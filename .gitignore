@@ -1,0 +1,10 @@
+# general
+node_modules
+add-css-line
+dist
+example/node_modules
+
+# yarn/npm specific
+yarn.lock
+package.lock.json
+yarn.error.log
