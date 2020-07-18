@@ -15,10 +15,10 @@
 		"build": "microbundle-crl --css-modules false --compress --format modern,cjs",
 		"start": "microbundle-crl watch --css-modules false --compress --format modern,cjs",
 		"prepare": "run-s build",
-		"test": "run-s test:unit test:lint test:build",
+		"test": "run-s test:unit test:build",
 		"test:build": "run-s build",
-		"test:unit": "cross-env CI=1 react-scripts test --env=jsdom",
-		"test:watch": "react-scripts test --env=jsdom",
+		"test:unit": "cross-env CI=1 react-scripts test",
+		"test:watch": "react-scripts test",
 		"install:example": "cd example && yarn install",
 		"start:example": "cd example && yarn run start",
 		"build:example": "cd example && react-scripts build"
@@ -28,6 +28,8 @@
 	},
 	"devDependencies": {
 		"cross-env": "^7.0.2",
+		"enzyme": "^3.11.0",
+		"enzyme-adapter-react-16": "^1.15.2",
 		"microbundle-crl": "^0.13.10",
 		"npm-run-all": "^4.1.5",
 		"react": "^16.13.1",
