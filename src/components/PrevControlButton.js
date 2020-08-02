@@ -27,15 +27,15 @@ export default function PrevControlButton({
 		handleClick()
 	}
 	const handleTouch = (event) => {
-		const { target } = event
-		const touchHandler = function() {
+		const { currentTarget } = event
+		const touchHandler = function(event) {
 			event.preventDefault()
 			this.removeEventListener('touchend', touchHandler)
-			enableSwipe = false
-			isSwipe = false
-			handlePrevClick(event)
+			// enableSwipe = false
+			// isSwipe = false
+			handleButtonClick(event)
 		}
-		target.addEventListener('touchend', touchHandler)
+		currentTarget.addEventListener('touchend', touchHandler)
 	}
 	return (
 		<div className={'carousel_control_box prev'}>

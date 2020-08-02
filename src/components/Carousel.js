@@ -23,51 +23,76 @@ function Carousel({
 	swipeable = false,
 	children
 }) {
+	const [ids, setIds] = React.useState({
+		carousel: `#${name}-carousel`,
+		slidebox: `#${name}-slidebox`,
+		indicatorsBox: `#${name}-indicators`,
+		prevControl: `#${name}-carousel-prev-control`,
+		nextControl: `#${name}-carousel-next-control`
+	})
+	const [elems, setElems] = React.useState({
+		carousel: null,
+		slidebox: null,
+		indicatorsBox: null,
+		prevControl: null,
+		nextControl: null
+	})
 	const [values, setValues] = React.useState({
-		slidesData: { offset: 0, counter: 0 }
+		slidesData: { offset: 0, counter: 0 },
+		slides: 0
 	})
 
 	React.useEffect(() => {
 		const carousel = document.querySelector(`#${name}-carousel`)
-		const slideBox = document.querySelector(`#${name}-slidebox`)
-		const slides = (children && children.length) || 1
-		const indicatorsBox = document.querySelector(`#${name}-indicators`)
-		const prevControl = document.querySelector(`#${name}-carousel-prev-control`)
-		const nextControl = document.querySelector(`#${name}-carousel-next-control`)
-		const { slidesData } = values
+		const slidebox = document.querySelector(ids.slidebox)
+		const indicatorsBox = document.querySelector(ids.indicatorsBox)
+		const prevControl = document.querySelector(ids.prevControl)
+		const nextControl = document.querySelector(ids.nextControl)
+		setElems({ carousel, slidebox, indicatorsBox, prevControl, nextControl })
+		setValues({ ...values, slides: (children && children.length) || 1 })
+	}, [])
+
+	const computeTranslation = () => {
+		const { slidebox, prevControl, nextControl, indicatorsBox } = elems
+		const { slidesData, slides } = values
 		const { counter, offset } = slidesData
-
-		function computeTranslation() {
-			if (carousel) {
-				if (slides !== 1) {
-					if (counter < slides - 1 && counter !== 0) {
-						prevControl.style.transform = 'translateX(0px)'
-						nextControl.style.transform = 'translateX(0px)'
-					} else if (counter === slides - 1) {
-						prevControl.style.transform = 'translateX(0px)'
-						nextControl.style.transform = 'translateX(100%)'
-					} else {
-						nextControl.style.transform = 'translateX(0px)'
-						prevControl.style.transform = 'translateX(-100%)'
-					}
+		if (slidebox) {
+			if (slides !== 1) {
+				if (counter < slides - 1 && counter !== 0) {
+					prevControl.style.transform = 'translateX(0px)'
+					nextControl.style.transform = 'translateX(0px)'
+				} else if (counter === slides - 1) {
+					prevControl.style.transform = 'translateX(0px)'
+					nextControl.style.transform = 'translateX(100%)'
+				} else {
+					nextControl.style.transform = 'translateX(0px)'
+					prevControl.style.transform = 'translateX(-100%)'
 				}
-
-				if (indicatorsBox) {
-					indicatorsBox.childNodes.forEach((indicator, index) => {
-						indicator.classList.remove('current')
-						indicator.style.backgroundColor = ''
-					})
-					indicatorsBox.childNodes[counter].classList.add('current')
-					indicatorsBox.childNodes[counter].style.backgroundColor = secondaryColor.main
-				}
-				slideBox.style.transform = `translateX(${offset}%)`
 			}
-		}
-		computeTranslation()
 
-		if (swipeable) {
-			useSwipe({ carousel, slideBox, translateFunction: computeTranslation })
+			if (indicatorsBox) {
+				indicatorsBox.childNodes.forEach((indicator, index) => {
+					indicator.classList.remove('current')
+					indicator.style.backgroundColor = ''
+				})
+				indicatorsBox.childNodes[counter].classList.add('current')
+				indicatorsBox.childNodes[counter].style.backgroundColor = secondaryColor.main
+			}
+			slidebox.style.transform = `translateX(${offset}%)`
 		}
+	}
+
+	if (swipeable) {
+		useSwipe({
+			carouselId: ids.carousel,
+			slideboxId: ids.slidebox,
+			slides: values.slides,
+			translateFunction: computeTranslation
+		})
+	}
+
+	React.useEffect(() => {
+		computeTranslation()
 	}, [name, children, values, secondaryColor])
 
 	const handlePrevClick = () => {
@@ -178,6 +203,7 @@ Carousel.propTypes = {
 	delay: PropTypes.number,
 	spacing: PropTypes.number,
 	height: PropTypes.string,
+	swipeable: PropTypes.bool,
 	children: PropTypes.any
 }
 

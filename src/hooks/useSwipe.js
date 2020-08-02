@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function useSwipe({ carousel, slideBox, translateFunction }) {
+export default function useSwipe({ carouselId, slideboxId, slides, translateFunction }) {
 	const [xValues, setXValues] = React.useState({
 		startX: 0,
 		initialX: 0,
@@ -14,6 +14,8 @@ export default function useSwipe({ carousel, slideBox, translateFunction }) {
 	})
 
 	React.useEffect(() => {
+		const carousel = document.querySelector(carouselId)
+		const slidebox = document.querySelector(slideboxId)
 		const { startX, initialX, currentX } = xValues
 		const { isSwipe, isSwipedToLeft, isSwipedToRight, enableSwipe } = boolValues
 		const { clientWidth } = parent
@@ -26,7 +28,7 @@ export default function useSwipe({ carousel, slideBox, translateFunction }) {
 		const translateToBreakpoints = () => {
 			let finalTranslateValue = 0
 			const expression = -(
-				clientWidth * Math.ceil(Math.abs(getBreakpoint(element).left) / clientWidth)
+				clientWidth * Math.ceil(Math.abs(getBreakpoint(slidebox).left) / clientWidth)
 			)
 			if (isSwipe) {
 				if (isSwipedToLeft) {
@@ -46,14 +48,17 @@ export default function useSwipe({ carousel, slideBox, translateFunction }) {
 		}
 
 		const translateElementByPx = (element, translateValue) => {
-			elems.box.style.transform = `translateX(${translateValue}px)`
+			element.style.transform = `translateX(${translateValue}px)`
 		}
 
 		const handleDragStart = (event = null) => {
-			let clientX = event.touches[0].clientX
+			const { clientX } = event.touches[0]
 			if (event.touches.length) {
-				startX = clientX
-				initialX = clientX - getBreakpoint(element).left
+				setXValues({
+					...xValues,
+					startX: clientX,
+					initialX: clientX - getBreakpoint(slidebox).left
+				})
 			}
 			console.log('drag start')
 		}
@@ -69,8 +74,8 @@ export default function useSwipe({ carousel, slideBox, translateFunction }) {
 					isSwipedToLeft: true,
 					isSwipedToRight: false,
 					enableSwipe: !(
-						Math.abs(getBreakpoint(element).left) >=
-						clientWidth * (elems.slides.length - 1)
+						Math.abs(getBreakpoint(slidebox).left) >=
+						clientWidth * (slides - 1)
 					)
 				})
 			} else if (startX < clientX) {
@@ -80,13 +85,13 @@ export default function useSwipe({ carousel, slideBox, translateFunction }) {
 					isSwipe: true,
 					isSwipedToLeft: false,
 					isSwipedToRight: true,
-					enableSwipe: Math.abs(getBreakpoint(element).left) > 0
+					enableSwipe: Math.abs(getBreakpoint(slidebox).left) > 0
 				})
 			}
 			if (enableSwipe) {
 				if (event.touches.length) {
-					currentX = clientX - initialX
-					translateElementByPx(slideBox, currentX)
+					setXValues({ ...xValues, currentX: clientX - initialX })
+					translateElementByPx(slidebox, currentX)
 				}
 			}
 		}
@@ -94,14 +99,14 @@ export default function useSwipe({ carousel, slideBox, translateFunction }) {
 		const handleDragEnd = () => {
 			if (enableSwipe) {
 				translateToBreakpoints()
-				isSwipe = false
+				setBoolValues({ ...boolValues, isSwipe: false })
 			}
 		}
 
-		carousel.addEventListener('touchstart', handleDragStart)
-		carousel.addEventListener('touchmove', handleDragMove)
-		carousel.addEventListener('touchend', handleDragEnd)
-	}, [carousel, slideBox, xValues, boolValues])
+		carousel.onTouchStart = handleDragStart
+		carousel.onTouchMove = handleDragMove
+		carousel.onTouchEnd = handleDragEnd
+	}, [])
 
 	// if ('ontouchstart' in elems.swipeableBox) {
 	// 	elems.controlsPrev.addEventListener('touchstart', function() {
