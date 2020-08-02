@@ -8,7 +8,7 @@ div.carousel_wrapper {
     position: relative;
 }
 
-div.carousel {
+div.carousel_box {
     width: 100%;
     height: 100%;
     display: flex;
