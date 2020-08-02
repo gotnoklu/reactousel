@@ -61,11 +61,11 @@ import 'reactousel/dist/index.css'
 
 // App component
 function App() {
-    return (
-        <Carousel name='test-carousel'>
-            <Slide>My first slide</Slide>
-        </Carousel>
-    )
+	return (
+		<Carousel name='test-carousel'>
+			<Slide>My first slide</Slide>
+		</Carousel>
+	)
 }
 ```
 
@@ -83,13 +83,13 @@ import 'reactousel/dist/index.css'
 
 // App component
 class App extends React.Component {
-    render() {
-        return (
-            <Carousel name='test-carousel'>
-                <Slide>My first slide</Slide>
-            </Carousel>
-        )
-    }
+	render() {
+		return (
+			<Carousel name='test-carousel'>
+				<Slide>My first slide</Slide>
+			</Carousel>
+		)
+	}
 }
 ```
 
@@ -161,53 +161,53 @@ class App extends React.Component {
 
 ```html
 <html>
-    <head>
-        <!-- Other Styles -->
-        <link rel="stylesheet" href="./reactousel.css" />
-        <script src="./reactousel.js"></script>
-    </head>
-    <body>
-        <div class="carousel-wrapper" style="width: 800px;">
-            <div class="carousel">
-                <div class="carousel-control-box prev">
-                    <button id="prev-btn" class="carousel-control prev">
-                        Left Button
-                    </button>
-                </div>
-                <div id="test" class="carousel">
-                    <div class="carousel-item">
-                        1
-                    </div>
-                    <div class=" carousel-item">
-                        2
-                    </div>
-                    <div class="carousel-item">
-                        3
-                    </div>
-                </div>
-                <div class="carousel-control-box next">
-                    <button id="next-btn" class="carousel-control next">
-                        Right Button
-                    </button>
-                </div>
-            </div>
-            <div class="slide-indicators"></div>
-        </div>
-        <script>
-        // Slides container
-        const box1 = document.getElementById('test')
-        // Control for previous slide
-        const controlsPrev1 = document.getElementById('prev-btn')
-        // Control for next slide
-        const controlsNext1 = document.getElementById('next-btn')
-        // Slides
-        const slides1 = box1.querySelectorAll('.carousel-item')
-        const carouselWrapper = box1.parentElement.parentElement
-        // Indicators box
-        const indicatorsBox1 = carouselWrapper.querySelector('.slide-indicators')
-        createCarousel(box1, controlsPrev1, controlsNext1, slides1, indicatorsBox1)
-        </script>
-    </body>
+	<head>
+		<!-- Other Styles -->
+		<link rel="stylesheet" href="./reactousel.css" />
+		<script src="./reactousel.js"></script>
+	</head>
+	<body>
+		<div class="carousel-wrapper" style="width: 800px;">
+			<div class="carousel">
+				<div class="carousel-control-box prev">
+					<button id="prev-btn" class="carousel-control prev">
+						Left Button
+					</button>
+				</div>
+				<div id="test" class="carousel">
+					<div class="carousel-item">
+						1
+					</div>
+					<div class=" carousel-item">
+						2
+					</div>
+					<div class="carousel-item">
+						3
+					</div>
+				</div>
+				<div class="carousel-control-box next">
+					<button id="next-btn" class="carousel-control next">
+						Right Button
+					</button>
+				</div>
+			</div>
+			<div class="slide-indicators"></div>
+		</div>
+		<script>
+			// Slides container
+			const box1 = document.getElementById('test')
+			// Control for previous slide
+			const controlsPrev1 = document.getElementById('prev-btn')
+			// Control for next slide
+			const controlsNext1 = document.getElementById('next-btn')
+			// Slides
+			const slides1 = box1.querySelectorAll('.carousel-item')
+			const carouselWrapper = box1.parentElement.parentElement
+			// Indicators box
+			const indicatorsBox1 = carouselWrapper.querySelector('.slide-indicators')
+			createCarousel(box1, controlsPrev1, controlsNext1, slides1, indicatorsBox1)
+		</script>
+	</body>
 </html>
 ```
 
