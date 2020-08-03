@@ -43,14 +43,14 @@ function Carousel({
 	})
 
 	React.useEffect(() => {
-		const carousel = document.querySelector(`#${name}-carousel`)
+		const carousel = document.querySelector(ids.carousel)
 		const slidebox = document.querySelector(ids.slidebox)
 		const indicatorsBox = document.querySelector(ids.indicatorsBox)
 		const prevControl = document.querySelector(ids.prevControl)
 		const nextControl = document.querySelector(ids.nextControl)
 		setElems({ carousel, slidebox, indicatorsBox, prevControl, nextControl })
 		setValues({ ...values, slides: (children && children.length) || 1 })
-	}, [])
+	}, [children])
 
 	const computeTranslation = () => {
 		const { slidebox, prevControl, nextControl, indicatorsBox } = elems
@@ -82,18 +82,9 @@ function Carousel({
 		}
 	}
 
-	if (swipeable) {
-		useSwipe({
-			carouselId: ids.carousel,
-			slideboxId: ids.slidebox,
-			slides: values.slides,
-			translateFunction: computeTranslation
-		})
-	}
-
 	React.useEffect(() => {
 		computeTranslation()
-	}, [name, children, values, secondaryColor])
+	}, [values])
 
 	const handlePrevClick = () => {
 		setValues(({ slidesData }) => ({
@@ -143,6 +134,130 @@ function Carousel({
 			return 'No slides'
 		}
 	}
+
+	const [xValues, setXValues] = React.useState({
+		startX: 0,
+		initialX: 0,
+		currentX: 0
+	})
+	const [boolValues, setBoolValues] = React.useState({
+		isSwipe: false,
+		isSwipedToLeft: false,
+		isSwipedToRight: false,
+		enableSwipe: false,
+		swipeHasStarted: false,
+		swipeHasEnded: false
+	})
+
+	const getBreakpoint = (element) => {
+		const getBounding = element.getBoundingClientRect()
+		return { left: getBounding.left, right: getBounding.right }
+	}
+
+	const translateElementByPx = (element, translateValue) => {
+		element.style.transform = `translateX(${translateValue}px)`
+	}
+
+	const translateToBreakpoints = () => {
+		const { carousel, slidebox } = elems
+		const { isSwipe, isSwipedToLeft, isSwipedToRight } = boolValues
+		let finalTranslateValue = 0
+		const expression = -(
+			carousel.clientWidth *
+			Math.ceil(Math.abs(getBreakpoint(slidebox).left) / carousel.clientWidth)
+		)
+		if (isSwipe) {
+			if (isSwipedToLeft) {
+				finalTranslateValue = expression
+			} else if (isSwipedToRight) {
+				finalTranslateValue = expression + carousel.clientWidth
+			}
+		}
+		return finalTranslateValue
+	}
+
+	const handleTouchStart = (event) => {
+		const { slidebox } = elems
+		const { clientX } = event.touches[0]
+		if (event.touches.length) {
+			setXValues({
+				...xValues,
+				startX: clientX,
+				initialX: clientX - getBreakpoint(slidebox).left
+			})
+		}
+	}
+
+	const handleTouchMove = (event) => {
+		const { slidebox, carousel } = elems
+		const { startX, initialX } = xValues
+		const { enableSwipe } = boolValues
+		const { clientX } = event.changedTouches[0]
+		if (startX > clientX) {
+			// Left swipe
+			// NOTE: X values decrease (approach 0)
+			setBoolValues({
+				...boolValues,
+				isSwipe: true,
+				isSwipedToLeft: true,
+				isSwipedToRight: false,
+				enableSwipe: !(
+					Math.abs(getBreakpoint(slidebox).left) >=
+					carousel.clientWidth * (values.slides - 1)
+				)
+			})
+		} else if (startX < clientX) {
+			// Right swipe
+			// NOTE: X values increase (move away from 0)
+			setBoolValues({
+				...boolValues,
+				isSwipe: true,
+				isSwipedToLeft: false,
+				isSwipedToRight: true,
+				enableSwipe: Math.abs(getBreakpoint(slidebox).left) > 0
+			})
+		}
+		setXValues({ ...xValues, currentX: clientX - initialX })
+	}
+
+	const handleTouchEnd = () => {
+		const { enableSwipe, isSwipe } = boolValues
+		if (enableSwipe && isSwipe) {
+			setBoolValues({ ...boolValues, swipeHasEnded: true })
+		}
+	}
+
+	React.useLayoutEffect(() => {
+		const { currentX } = xValues
+		const { enableSwipe } = boolValues
+		const { slidebox } = elems
+		if (enableSwipe) {
+			translateElementByPx(slidebox, currentX)
+		}
+	}, [xValues.currentX])
+
+	// React.useLayoutEffect(() => {
+	// 	const { slidebox } = elems
+	// 	const { enableSwipe, isSwipe, swipeHasEnded } = boolValues
+	// 	if (enableSwipe) {
+	// 		// translateElementByPx(slidebox, xValues.currentX)
+	// 		// if (swipeHasEnded) {
+	// 		// 	const translateValue = translateToBreakpoints()
+	// 		// 	console.log({ translateValue })
+	// 		// 	setTimeout(() => {
+	// 		// 		computeTranslation(
+	// 		// 			(translateValue / carousel.clientWidth) * 100,
+	// 		// 			Math.abs(translateValue / carousel.clientWidth)
+	// 		// 		)
+	// 		// 	}, 1000)
+	// 		// } else {
+	// 		// 	translateElementByPx(slidebox, xValues.currentX)
+	// 		// }
+	// 	}
+	// 	console.log({ initialX: xValues.initialX, currentX: xValues.currentX })
+	// 	// translateElementByPx(slidebox, xValues.currentX)
+	// }, [boolValues, xValues.currentX])
+
 	return (
 		<div
 			id={`${name}-carousel`}
@@ -151,6 +266,9 @@ function Carousel({
 				padding: spacing ? `${spacing}%` : 'inherit',
 				height: height || '500px'
 			}}
+			onTouchStart={handleTouchStart}
+			onTouchMove={handleTouchMove}
+			onTouchEnd={handleTouchEnd}
 		>
 			<div className='carousel_box'>
 				<PrevControlButton
