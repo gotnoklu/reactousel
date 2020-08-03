@@ -50,16 +50,17 @@ function Carousel({
 		}
 	}, [children])
 
-	const computeTranslation = (finalOffset, finalCounter) => {
+	const computeTranslation = (finalOffset, finalCounter = 0) => {
 		const { slidebox, prevControl, nextControl, indicatorsBox } = elems
 		const { slidesData, slides } = values
 		const { counter, offset } = slidesData
+		const currentIndicatorIndex = finalCounter || counter
 		if (slidebox) {
 			if (slides !== 1) {
-				if (counter < slides - 1 && counter !== 0) {
+				if (currentIndicatorIndex < slides - 1 && currentIndicatorIndex !== 0) {
 					prevControl.style.transform = 'translateX(0px)'
 					nextControl.style.transform = 'translateX(0px)'
-				} else if (counter === slides - 1) {
+				} else if (currentIndicatorIndex === slides - 1) {
 					prevControl.style.transform = 'translateX(0px)'
 					nextControl.style.transform = 'translateX(100%)'
 				} else {
@@ -73,8 +74,8 @@ function Carousel({
 					indicator.classList.remove('current')
 					indicator.style.backgroundColor = ''
 				})
-				indicatorsBox.childNodes[finalCounter || counter].classList.add('current')
-				indicatorsBox.childNodes[finalCounter || counter].style.backgroundColor =
+				indicatorsBox.childNodes[currentIndicatorIndex].classList.add('current')
+				indicatorsBox.childNodes[currentIndicatorIndex].style.backgroundColor =
 					secondaryColor.main
 			}
 			slidebox.style.transform = `translateX(${finalOffset || offset}%)`
@@ -84,6 +85,15 @@ function Carousel({
 	React.useEffect(() => {
 		computeTranslation()
 	}, [values])
+
+	const swipe = swipeable
+		? useSwipe({
+				carousel: elems.carousel,
+				slidebox: elems.slidebox,
+				slidesNumber: values.slides,
+				translateFn: computeTranslation
+		  })
+		: null
 
 	const handlePrevClick = () => {
 		setValues(({ slidesData }) => ({
@@ -137,13 +147,6 @@ function Carousel({
 			return 'No slides'
 		}
 	}
-
-	const swipe = useSwipe({
-		carousel: elems.carousel,
-		slidebox: elems.slidebox,
-		slidesNumber: values.slides,
-		translateFn: computeTranslation
-	})
 
 	return (
 		<div
