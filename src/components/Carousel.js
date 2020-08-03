@@ -152,6 +152,17 @@ function Carousel({
 		}
 	}
 
+	const configTouchEventHandlers = () => {
+		if (swipeable) {
+			return {
+				onTouchStart: swipe && swipe.handleTouchStart,
+				onTouchMove: swipe && swipe.handleTouchMove,
+				onTouchEnd: swipe && swipe.handleTouchEnd
+			}
+		}
+		return null
+	}
+
 	return (
 		<div
 			id={`${name}-carousel`}
@@ -160,9 +171,7 @@ function Carousel({
 				padding: spacing ? `${spacing}%` : 'inherit',
 				height: height || '500px'
 			}}
-			onTouchStart={swipe && swipe.handleTouchStart}
-			onTouchMove={swipe && swipe.handleTouchMove}
-			onTouchEnd={swipe && swipe.handleTouchEnd}
+			{...configTouchEventHandlers()}
 		>
 			<div className='carousel_box'>
 				<PrevControlButton

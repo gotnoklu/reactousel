@@ -31,8 +31,6 @@ export default function PrevControlButton({
 		const touchHandler = function(event) {
 			event.preventDefault()
 			this.removeEventListener('touchend', touchHandler)
-			// enableSwipe = false
-			// isSwipe = false
 			handleButtonClick(event)
 		}
 		currentTarget.addEventListener('touchend', touchHandler)
