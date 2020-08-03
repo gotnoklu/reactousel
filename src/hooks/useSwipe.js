@@ -82,7 +82,15 @@ export default function useSwipe({ carousel, slidebox, slidesNumber, translateFn
 		}
 		if (enableSwipe) {
 			if (event.changedTouches.length) {
-				translateElementByPx(slidebox, clientX - xValues.initialX)
+				if (
+					getBreakpoint(slidebox).left > 0 ||
+					Math.abs(getBreakpoint(slidebox).left) >
+						(slidesNumber - 1) * carousel.clientWidth
+				) {
+					translateElementByPx(slidebox, 0)
+				} else {
+					translateElementByPx(slidebox, clientX - xValues.initialX)
+				}
 			}
 		}
 	}
@@ -91,6 +99,7 @@ export default function useSwipe({ carousel, slidebox, slidesNumber, translateFn
 		const { enableSwipe, isSwipe } = boolValues
 		if (enableSwipe && isSwipe) {
 			translateToBreakpoints()
+			setBoolValues({ ...boolValues, enableSwipe: false, isSwipe: false })
 		}
 	}
 
