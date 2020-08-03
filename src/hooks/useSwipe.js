@@ -10,6 +10,7 @@ export default function useSwipe({ carousel, slidebox, slidesNumber, translateFn
 		isSwipedToRight: false,
 		enableSwipe: false
 	})
+
 	const getBreakpoint = (element) => {
 		const getBounding = element.getBoundingClientRect()
 		return { left: getBounding.left, right: getBounding.right }
@@ -85,12 +86,14 @@ export default function useSwipe({ carousel, slidebox, slidesNumber, translateFn
 			}
 		}
 	}
+
 	const handleTouchEnd = () => {
 		const { enableSwipe, isSwipe } = boolValues
 		if (enableSwipe && isSwipe) {
 			translateToBreakpoints()
 		}
 	}
+
 	return {
 		handleTouchStart,
 		handleTouchMove,

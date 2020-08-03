@@ -23,13 +23,6 @@ function Carousel({
 	swipeable = false,
 	children
 }) {
-	const [ids, setIds] = React.useState({
-		carousel: `#${name}-carousel`,
-		slidebox: `#${name}-slidebox`,
-		indicatorsBox: `#${name}-indicators`,
-		prevControl: `#${name}-carousel-prev-control`,
-		nextControl: `#${name}-carousel-next-control`
-	})
 	const [elems, setElems] = React.useState({
 		carousel: null,
 		slidebox: null,
@@ -43,11 +36,11 @@ function Carousel({
 	})
 
 	React.useEffect(() => {
-		const carousel = document.querySelector(ids.carousel)
-		const slidebox = document.querySelector(ids.slidebox)
-		const indicatorsBox = document.querySelector(ids.indicatorsBox)
-		const prevControl = document.querySelector(ids.prevControl)
-		const nextControl = document.querySelector(ids.nextControl)
+		const carousel = document.querySelector(`#${name}-carousel`)
+		const slidebox = document.querySelector(`#${name}-slidebox`)
+		const indicatorsBox = document.querySelector(`#${name}-indicators`)
+		const prevControl = document.querySelector(`#${name}-carousel-prev-control`)
+		const nextControl = document.querySelector(`#${name}-carousel-next-control`)
 		setElems({ carousel, slidebox, indicatorsBox, prevControl, nextControl })
 		setValues({ ...values, slides: (children && children.length) || 1 })
 	}, [children])
@@ -95,7 +88,6 @@ function Carousel({
 				counter: slidesData.counter <= 0 ? 0 : slidesData.counter - 1
 			}
 		}))
-		setBoolValues({ ...boolValues, enableSwipe: false, isSwipe: false })
 	}
 
 	const handleNextClick = (event) => {
@@ -112,7 +104,6 @@ function Carousel({
 						: slidesData.counter + 1
 			}
 		}))
-		setBoolValues({ ...boolValues, enableSwipe: false, isSwipe: false })
 	}
 
 	const handleIndicatorClick = (index) => {
