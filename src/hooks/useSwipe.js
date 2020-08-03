@@ -97,6 +97,8 @@ export default function useSwipe({ carousel, slidebox, slidesNumber, translateFn
 	return {
 		handleTouchStart,
 		handleTouchMove,
-		handleTouchEnd
+		handleTouchEnd,
+		setEnableSwipe: (bool) => setBoolValues({ ...boolValues, enableSwipe: bool }),
+		setIsSwipe: (bool) => setBoolValues({ ...boolValues, isSwipe: bool })
 	}
 }

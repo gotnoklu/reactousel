@@ -43,6 +43,11 @@ function Carousel({
 		const nextControl = document.querySelector(`#${name}-carousel-next-control`)
 		setElems({ carousel, slidebox, indicatorsBox, prevControl, nextControl })
 		setValues({ ...values, slides: (children && children.length) || 1 })
+
+		return () => {
+			setElems({})
+			setValues({})
+		}
 	}, [children])
 
 	const computeTranslation = (finalOffset, finalCounter) => {
@@ -88,6 +93,8 @@ function Carousel({
 				counter: slidesData.counter <= 0 ? 0 : slidesData.counter - 1
 			}
 		}))
+		swipe.setEnableSwipe(false)
+		swipe.setIsSwipe(false)
 	}
 
 	const handleNextClick = (event) => {
@@ -104,6 +111,8 @@ function Carousel({
 						: slidesData.counter + 1
 			}
 		}))
+		swipe.setEnableSwipe(false)
+		swipe.setIsSwipe(false)
 	}
 
 	const handleIndicatorClick = (index) => {
