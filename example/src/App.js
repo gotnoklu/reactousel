@@ -21,7 +21,7 @@ const slides = [
 
 const App = () => {
 	return (
-		<Carousel name='example' controlsStyle='circle' swipeable>
+		<Carousel name='example' controlsStyle='circle'>
 			{slides.map((content, index) => (
 				<Slide key={index}>{content}</Slide>
 			))}

@@ -103,8 +103,10 @@ function Carousel({
 				counter: slidesData.counter <= 0 ? 0 : slidesData.counter - 1
 			}
 		}))
-		swipe.setEnableSwipe(false)
-		swipe.setIsSwipe(false)
+		if (swipe) {
+			swipe.setEnableSwipe(false)
+			swipe.setIsSwipe(false)
+		}
 	}
 
 	const handleNextClick = (event) => {
@@ -121,8 +123,10 @@ function Carousel({
 						: slidesData.counter + 1
 			}
 		}))
-		swipe.setEnableSwipe(false)
-		swipe.setIsSwipe(false)
+		if (swipe) {
+			swipe.setEnableSwipe(false)
+			swipe.setIsSwipe(false)
+		}
 	}
 
 	const handleIndicatorClick = (index) => {
@@ -156,9 +160,9 @@ function Carousel({
 				padding: spacing ? `${spacing}%` : 'inherit',
 				height: height || '500px'
 			}}
-			onTouchStart={swipe.handleTouchStart}
-			onTouchMove={swipe.handleTouchMove}
-			onTouchEnd={swipe.handleTouchEnd}
+			onTouchStart={swipe && swipe.handleTouchStart}
+			onTouchMove={swipe && swipe.handleTouchMove}
+			onTouchEnd={swipe && swipe.handleTouchEnd}
 		>
 			<div className='carousel_box'>
 				<PrevControlButton
