@@ -3,14 +3,14 @@ import PropTypes from 'prop-types'
 import {makeStyles} from '../styles'
 
 const useStyles = makeStyles({
-    controlBox: ({direction}) => ({
+    controlBox: ({direction, hideControl}) => ({
         width: 'max-content',
         height: '100%',
         position: 'absolute',
         top: direction === 'top' || direction !== 'down' && 0,
         [(direction === 'left' || direction === 'right') && direction]: 0,
         zIndex: 20,
-        display: ({hideControl}) => hideControl ? 'none' : 'flex',
+        display: hideControl ? 'none' : 'flex',
         alignItems: 'center',
         justifyContent: 'center'
     })

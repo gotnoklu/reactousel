@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 import {shallow} from '../setup/enzyme.setup'
 import ControlBox from '../../components/ControlBox'
 

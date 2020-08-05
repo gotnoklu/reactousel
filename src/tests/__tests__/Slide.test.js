@@ -6,16 +6,10 @@ import Slide from '../../components/Slide'
 describe('Slide component', () => {
     let component, wrapper
     test('renders without crashing', () => {
-        component = <Slide />
+        component = <Slide>Hello</Slide>
         const div = document.createElement('div')
         ReactDOM.render(component, div)
         ReactDOM.unmountComponentAtNode(div)
-    })
-
-    test('renders default text when no children is supplied', () => {
-        component = <Slide></Slide>
-        wrapper = shallow(component)
-        expect(wrapper.find('.carousel-item').get(0).props.children).toBe('Nothing to display')
     })
 
     test('renders 2 divs', () => {
@@ -26,7 +20,7 @@ describe('Slide component', () => {
             </Slide>
         )
         wrapper = shallow(component)
-        expect(wrapper.find('.carousel-item').get(0).props.children).toBeDefined()
-        expect(wrapper.find('.carousel-item').get(0).props.children).toHaveLength(2)
+        expect(wrapper.find(Slide).props.children).toBeDefined()
+        expect(wrapper.find(Slide).props.children).toHaveLength(2)
     })
 })

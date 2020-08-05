@@ -1,12 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import {shallow} from '../setup/enzyme.setup'
-import NextControlButton from '../../components/NextControlButton'
+import PrevControlButton from '../../components/PrevControlButton'
 import {withCarouselTheme} from '../../styles'
 
-const ButtonWithTheme = withCarouselTheme(NextControlButton)
+const ButtonWithTheme = withCarouselTheme(PrevControlButton)
 
-describe('NextControlButton component', () => {
+describe('PrevControlButton component', () => {
     let component, div, wrapper
 
     test('renders without crashing', () => {

@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-export default function Indicators({
+export default function IndicatorsBox({
     id,
     hideIndicators,
     indicatorsStyle,
