@@ -3,13 +3,13 @@ import PropTypes from 'prop-types'
 import {makeStyles} from '../styles'
 
 const useStyles = makeStyles({
-    controlBox: ({direction, hideControl}) => ({
+    controlBox: ({position, hideControl}) => ({
         width: 'max-content',
         height: '100%',
         position: 'absolute',
-        top: direction === 'top' || direction !== 'bottom' && 0,
-        left: direction === 'left' && 0,
-        right: direction === 'right' && 0,
+        top: position === 'top' || position !== 'bottom' && 0,
+        left: position === 'left' && 0,
+        right: position === 'right' && 0,
         zIndex: 20,
         display: hideControl ? 'none' : 'flex',
         alignItems: 'center',
@@ -19,6 +19,7 @@ const useStyles = makeStyles({
 
 export default function ControlBox({position, hideControl, children}) {
     const classes = useStyles({position, hideControl})
+    console.log(position === 'right')
     return (
         <div className={classes.controlBox}>
             {children}
@@ -29,5 +30,6 @@ export default function ControlBox({position, hideControl, children}) {
 ControlBox.propTypes = {
     position: PropTypes.oneOf(['left', 'right']),
     hideControl: PropTypes.bool,
+    position: PropTypes.string.isRequired,
     children: PropTypes.node.isRequired
 }
