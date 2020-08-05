@@ -37,8 +37,7 @@ describe('Carousel component', () => {
             </Carousel>
         )
         wrapper = shallow(component)
-        // expect(wrapper.children()).toHaveLength(3)
-        // expect(wrapper.find(Slide)).toHaveLength(2)
-        // expect(wrapper.find(FallbackSlide)).toHaveLength(1)
+        expect(wrapper.find(Slide)).toHaveLength(2)
+        expect(wrapper.find(FallbackSlide)).toHaveLength(1)
     })
 })

@@ -20,7 +20,7 @@ describe('Slide component', () => {
             </Slide>
         )
         wrapper = shallow(component)
-        expect(wrapper.find(Slide).props.children).toBeDefined()
-        expect(wrapper.find(Slide).props.children).toHaveLength(2)
+        expect(wrapper.equals(Slide)).toBeDefined()
+        expect(wrapper.prop('children')).toHaveLength(2)
     })
 })

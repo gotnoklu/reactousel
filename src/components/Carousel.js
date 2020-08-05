@@ -163,10 +163,21 @@ function Carousel({
     const handleInit = () => {
         if (children) {
             if (children.length) {
-                return children.map((child, index) =>
-                    child.type === Slide ? child : <FallbackSlide key={index} />
-                )
-            } else if (children.type.name === 'Slide') {
+                return children.map((child, index) => {
+                    // if (child.length) {
+                    //     child.forEach((elem) => {
+                    //         if (elem.type === Slide) {
+                    //             console.log(elem.type)
+                    //             return elem
+                    //         } else {
+                    //             return <FallbackSlide key={index} />
+                    //         }
+                    //     })
+                    // } else {
+                    return child.type === Slide ? child : <FallbackSlide key={index} />
+                    // }
+                })
+            } else if (children.type === Slide) {
                 return children
             } else {
                 return <FallbackSlide />
