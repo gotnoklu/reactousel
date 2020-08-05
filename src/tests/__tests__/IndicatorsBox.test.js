@@ -14,7 +14,7 @@ describe('Indicators component', () => {
         const div = document.createElement('div')
         ReactDOM.render(component, div)
         ReactDOM.unmountComponentAtNode(div)
-        expect(component.props.children).toBe(undefined)
+        expect(component.props.children).toBeUndefined()
     })
 
     test('renders indicators', () => {

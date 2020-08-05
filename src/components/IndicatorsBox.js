@@ -59,7 +59,7 @@ export default function IndicatorsBox({
     )
 }
 
-Indicators.propTypes = {
+IndicatorsBox.propTypes = {
     id: PropTypes.string.isRequired,
     hideIndicators: PropTypes.bool,
     indicatorsStyle: PropTypes.oneOf(['circle', 'rounded']),
