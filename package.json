@@ -19,12 +19,12 @@
 		"test:build": "run-s build",
 		"test:unit": "cross-env CI=1 react-scripts test",
 		"test:watch": "react-scripts test",
-		"install:example": "cd example && yarn install",
-		"start:example": "cd example && yarn run start",
+		"yarn-install:example": "cd example && yarn install",
+		"yarn-start:example": "cd example && yarn run start",
 		"build:example": "cd example && react-scripts build"
 	},
 	"peerDependencies": {
-		"react": "^16.0.0"
+		"react": "^16.8.0"
 	},
 	"devDependencies": {
 		"babel-eslint": "^10.0.3",
@@ -35,6 +35,7 @@
 		"npm-run-all": "^4.1.5",
 		"react": "^16.13.1",
 		"react-dom": "^16.13.1",
+		"react-jss": "^10.3.0",
 		"react-scripts": "^3.4.1"
 	},
 	"files": [
