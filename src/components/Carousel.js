@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import PrevControlButton from './PrevControlButton'
 import NextControlButton from './NextControlButton'
-import Indicators from './Indicators'
+import IndicatorsBox from './IndicatorsBox'
 import Slide from './Slide'
 import FallbackSlide from './FallbackSlide'
 import {makeStyles, withCarouselTheme} from '../styles'
@@ -211,7 +211,7 @@ function Carousel({
                     hideControl={noControls}
                 />
             </div>
-            <Indicators
+            <IndicatorsBox
                 id={`${name}-indicators`}
                 handleIndicatorClick={handleIndicatorClick}
                 hideIndicators={noIndicators}
