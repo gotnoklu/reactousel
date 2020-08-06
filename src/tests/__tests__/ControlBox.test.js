@@ -7,7 +7,7 @@ describe('ControlBox component', () => {
     let component, div, wrapper
 
     test('renders without crashing', () => {
-        component = <ControlBox>Test</ControlBox>
+        component = <ControlBox position='right'>Test</ControlBox>
         const div = document.createElement('div')
         ReactDOM.render(component, div)
         ReactDOM.unmountComponentAtNode(div)

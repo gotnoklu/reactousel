@@ -19,7 +19,6 @@ const useStyles = makeStyles({
 
 export default function ControlBox({position, hideControl, children}) {
     const classes = useStyles({position, hideControl})
-    console.log(position === 'right')
     return (
         <div className={classes.controlBox}>
             {children}

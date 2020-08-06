@@ -38,6 +38,6 @@ describe('Carousel component', () => {
         )
         wrapper = shallow(component)
         expect(wrapper.find(Slide)).toHaveLength(2)
-        expect(wrapper.find(FallbackSlide)).toHaveLength(1)
+        expect(wrapper.containsMatchingElement(FallbackSlide)).toBeDefined()
     })
 })

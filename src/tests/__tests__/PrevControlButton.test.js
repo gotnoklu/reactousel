@@ -10,7 +10,7 @@ describe('PrevControlButton component', () => {
     let component, div, wrapper
 
     component = (
-        <ButtonWithTheme id='test' handleClick={() => console.log('click')}>
+        <ButtonWithTheme id='test' handleClick={() => true}>
             Test
         </ButtonWithTheme>
     )
@@ -21,8 +21,8 @@ describe('PrevControlButton component', () => {
         ReactDOM.unmountComponentAtNode(div)
     })
 
-    test('logs to console when clicked', () => {
+    test('returns true when clicked', () => {
         wrapper = mount(component)
-        expect(wrapper.invoke('handleClick')).toBe(console.log('click'))
+        expect(wrapper.invoke('handleClick')()).toBe(true)
     })
 })

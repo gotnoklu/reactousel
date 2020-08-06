@@ -34,7 +34,6 @@ const App = () => {
             {slides.map((content, index) => (
                 <Slide key={index}>{content}</Slide>
             ))}
-            <div>4</div>
         </Carousel>
     )
 }
