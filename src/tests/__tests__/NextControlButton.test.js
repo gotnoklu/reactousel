@@ -15,14 +15,9 @@ describe('NextControlButton component', () => {
         </ButtonWithTheme>
     )
 
-    test('renders without crashing', () => {
-        const div = document.createElement('div')
-        ReactDOM.render(component, div)
-        ReactDOM.unmountComponentAtNode(div)
-    })
-
     test('returns true when clicked', () => {
         wrapper = mount(component)
         expect(wrapper.invoke('handleClick')()).toBe(true)
+        wrapper.unmount(component)
     })
 })
