@@ -7,7 +7,6 @@ import {withCarouselTheme} from '../../styles'
 const ButtonWithTheme = withCarouselTheme(PrevControlButton)
 
 describe('PrevControlButton component', () => {
-    const div = document.createElement('div')
     let component, wrapper
 
     component = (
