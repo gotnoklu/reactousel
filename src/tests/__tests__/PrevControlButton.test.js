@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {mount} from '../setup/enzyme.setup'
+import {shallow, mount} from '../setup/enzyme.setup'
 import PrevControlButton from '../../components/PrevControlButton'
 import {withCarouselTheme} from '../../styles'
 
