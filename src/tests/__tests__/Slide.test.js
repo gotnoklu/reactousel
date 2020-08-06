@@ -5,6 +5,7 @@ import Slide from '../../components/Slide'
 
 describe('Slide component', () => {
     let component, wrapper
+
     test('renders without crashing', () => {
         component = <Slide>Hello</Slide>
         const div = document.createElement('div')
@@ -20,7 +21,7 @@ describe('Slide component', () => {
             </Slide>
         )
         wrapper = shallow(component)
-        expect(wrapper.equals(Slide)).toBeDefined()
         expect(wrapper.prop('children')).toHaveLength(2)
+        expect(wrapper.children().find('div')).toHaveLength(2)
     })
 })
