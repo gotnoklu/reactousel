@@ -6,7 +6,7 @@
 
 ## What's new in version 1.1.x
 
--   Importing the css styles **is expected to result in an error** since all styles have now been converted to [**JSS**](https://cssinjs.org/react-jss).
+-   Importing styles from `reactousel/dist/index.css` **is expected to result in an error** since all styles have now been converted to [**JSS**](https://cssinjs.org).
 
 ```jsx
 import {Carousel, Slide} from 'reactousel'
