@@ -4,7 +4,7 @@ import {shallow, mount} from '../setup/enzyme.setup'
 import ControlBox from '../../components/ControlBox'
 
 describe('ControlBox component', () => {
-    let component, div, wrapper
+    let component, wrapper
 
     test('returns children as "Test"', () => {
         component = <ControlBox position='right'>Test</ControlBox>
