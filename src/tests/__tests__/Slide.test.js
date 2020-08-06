@@ -16,5 +16,6 @@ describe('Slide component', () => {
         wrapper = shallow(component)
         expect(wrapper.prop('children')).toHaveLength(2)
         expect(wrapper.children().find('div')).toHaveLength(2)
+        wrapper.unmount(component)
     })
 })
