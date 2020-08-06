@@ -25,22 +25,22 @@ import {Carousel, Slide, createCarouselTheme} from 'reactousel'
 
 // You can use HEX or RGB or normal color values
 const customTheme = createCarouselTheme({
-    // theme for control buttons
-    controls: {
-        colorPrimary: '#0000ff', // blue
-        colorSecondary: '#ffffff' // white
-    },
-    // theme for indicators
-    indicators: {
-        colorPrimary: '#000000', //black
-        colorSecondary: '#ffa000' // amber
-    }
+	// theme for control buttons
+	controls: {
+		colorPrimary: '#0000ff', // blue
+		colorSecondary: '#ffffff' // white
+	},
+	// theme for indicators
+	indicators: {
+		colorPrimary: '#000000', //black
+		colorSecondary: '#ffa000' // amber
+	}
 })
 
 // App component
 function App() {
 	return (
-        // Pass customTheme value to theme prop of Carousel component
+		// Pass customTheme value to theme prop of Carousel component
 		<Carousel name='test-carousel' theme={customTheme}>
 			<Slide>My first slide</Slide>
 		</Carousel>
@@ -62,7 +62,7 @@ $ npm install reactousel
 $ yarn add reactousel
 ```
 
--   [Download](https://reactousel.web.app) JS & CSS files (use in the head tag)
+-   [Download](https://reactousel.web.app/download) JS & CSS files (use in the head tag)
 
 ```html
 <html>
@@ -78,7 +78,7 @@ $ yarn add reactousel
 
 ## Usage
 
-> Import the carousel and slide components like below:<br/>
+-   Import the carousel and slide components like below:<br/>
 
 ```jsx
 // Import React
@@ -92,7 +92,7 @@ import {Carousel, Slide} from 'reactousel'
 import 'reactousel/dist/index.css'
 ```
 
-> Example with a functional component:
+-   Example with a functional component:
 
 ```jsx
 //Import React
@@ -115,7 +115,7 @@ function App() {
 }
 ```
 
-> Example with a class component:
+-   Example with a class component:
 
 ```jsx
 //Import React
@@ -143,7 +143,9 @@ class App extends React.Component {
 
 ### `<Carousel>` props
 
-`name, controlsStyle, controlsPrevious, controlsNext, noIndicators, noControls, indicatorsStyle, delay, spacing, height, primaryColor, secondaryColor, children`
+`name, controlsStyle, controlsPrevious, controlsNext, noIndicators, noControls, indicatorsStyle, delay, spacing, height, children`
+
+`primaryColor, secondaryColor` have however, been removed **starting from version 1.1.0**
 
 -   `name`<br />
     desired unique name of the carousel (required).
@@ -175,7 +177,7 @@ class App extends React.Component {
 -   `height`<br />
     height of carousel.
 
--   `primaryColor`<br />
+-   `primaryColor` **(removed in version 1.1.0, see [Theming](#theming) below)**<br />
     color of controls.<br />
 
     ```javascript
@@ -183,7 +185,7 @@ class App extends React.Component {
     primaryColor={{ main: '#000', contrast: '#fff' }}
     ```
 
--   `secondaryColor`<br />
+-   `secondaryColor` **(removed in version 1.1.0, see [Theming](#theming) below)**<br />
     color of indicators.<br />
 
     ```javascript
@@ -201,9 +203,75 @@ class App extends React.Component {
 -   `children`<br/>
     any element or text.
 
+## Theming
+
+As of versions 1.1.0 and above, customizing the theme for the controls and indicators could be done via **createCarouselTheme**.
+
+-   Example with a class component
+
+```jsx
+// Import React as usual
+import React from 'react'
+
+// Import createCarouselTheme in addition to Carousel and Slide
+import {Carousel, Slide, createCarouselTheme} from 'reactousel'
+
+// You can use HEX or RGB or normal color values
+const customTheme = createCarouselTheme({
+	// theme for control buttons
+	controls: {
+		colorPrimary: '#0000ff', // blue
+		colorSecondary: '#ffffff' // white
+	},
+	// theme for indicators
+	indicators: {
+		colorPrimary: '#000000', //black
+		colorSecondary: '#ffa000' // amber
+	}
+})
+
+// App component
+class App extends React.Component {
+	render() {
+		return (
+			// Pass customTheme value to theme prop of Carousel component
+			<Carousel name='test-carousel' theme={customTheme}>
+				<Slide>My first slide</Slide>
+			</Carousel>
+		)
+	}
+}
+```
+
+## Development
+
+-   **Clone the project**<br />
+
+    ```bash
+    $ git clone https://github.com/Elkanah-me/reactousel.git
+    ```
+
+-   **Install dependencies**<br />
+    `npm install` or `yarn install`
+
+-   **Start**<br />
+    `npm run start` or `yarn run start`
+
+-   **Build**<br />
+    `npm run build` or `yarn run build`
+
+-   **Install dependencies for example**<br />
+    `cd example && npm install` or `cd example && yarn install`
+
+-   **Run in browser**<br />
+    `cd example && npm run start` or `cd example && yarn run start`
+
+-   **Build example**<br />
+    `cd example && npm run build` or `cd example && yarn run build`
+
 ## In your HTML, CSS and JS projects
 
-### An example in HTML
+-   An example in HTML
 
 ```html
 <html>
@@ -257,27 +325,7 @@ class App extends React.Component {
 </html>
 ```
 
-## Development
-
--   **Install dependencies**<br />
-    `npm install` or `yarn install`
-
--   **Start**<br />
-    `npm run start` or `yarn run start`
-
--   **Build**<br />
-    `npm run build` or `yarn run build`
-
--   **Install dependencies for example**<br />
-    `cd example && npm install` or `cd example && yarn install`
-
--   **Run in browser**<br />
-    `cd example && npm run start` or `cd example && yarn run start`
-
--   **Build example**<br />
-    `npm run build:example` or `yarn run build:example`
-
-<br /><hr />
+<hr />
 
 Checkout [the demos on Reactousel's website](https://reactousel.web.app/demos). You may [download the JS & CSS files](https://reactousel.web.app/download) to use in your raw HTML, CSS, JS projects.
 
