@@ -9,7 +9,7 @@
 -   Importing styles from `reactousel/dist/index.css` **is expected to result in an error** since all styles have now been converted to [**JSS**](https://cssinjs.org).
 
 ```jsx
-import {Carousel, Slide} from 'reactousel'
+import { Carousel, Slide } from "reactousel";
 
 // reactousel/dist/index.css no longer exists
 ```
@@ -50,36 +50,36 @@ $ yarn add reactousel
 
 ```jsx
 // Import React
-import React from 'react'
+import React from "react";
 
 // Import Carousel and Slide like this
-import {Carousel, Slide} from 'reactousel'
+import { Carousel, Slide } from "reactousel";
 
 // Only import index.css in versions below 1.1.0.
 // In versions above 1.1.0, it is expected to cause an error.
-import 'reactousel/dist/index.css'
+import "reactousel/dist/index.css";
 ```
 
 -   Example with a functional component:
 
 ```jsx
 //Import React
-import React from 'react'
+import React from "react";
 
 // Import Carousel and Slide components
-import {Carousel, Slide} from 'reactousel'
+import { Carousel, Slide } from "reactousel";
 
 // Only import index.css in versions below 1.1.0.
 // In versions above 1.1.0, it is expected to cause an error.
-import 'reactousel/dist/index.css'
+import "reactousel/dist/index.css";
 
 // App component
 function App() {
 	return (
-		<Carousel name='test-carousel'>
+		<Carousel name="test-carousel">
 			<Slide>My first slide</Slide>
 		</Carousel>
-	)
+	);
 }
 ```
 
@@ -87,22 +87,22 @@ function App() {
 
 ```jsx
 //Import React
-import React from 'react'
+import React from "react";
 
 // Import Carousel and Slide components
-import {Carousel, Slide} from 'reactousel'
+import { Carousel, Slide } from "reactousel";
 
 // Import styles
-import 'reactousel/dist/index.css'
+import "reactousel/dist/index.css";
 
 // App component
 class App extends React.Component {
 	render() {
 		return (
-			<Carousel name='test-carousel'>
+			<Carousel name="test-carousel">
 				<Slide>My first slide</Slide>
 			</Carousel>
-		)
+		);
 	}
 }
 ```
@@ -165,34 +165,34 @@ As of versions 1.1.0 and above, customizing the theme for the controls and indic
 
 ```jsx
 // Import React as usual
-import React from 'react'
+import React from "react";
 
 // Import createCarouselTheme in addition to Carousel and Slide
-import {Carousel, Slide, createCarouselTheme} from 'reactousel'
+import { Carousel, Slide, createCarouselTheme } from "reactousel";
 
 // You can use HEX or RGB or normal color values
 const customTheme = createCarouselTheme({
 	// theme for control buttons
 	controls: {
-		colorPrimary: '#0000ff', // blue
-		colorSecondary: '#ffffff' // white
+		colorPrimary: "#0000ff", // blue
+		colorSecondary: "#ffffff" // white
 	},
 	// theme for indicators
 	indicators: {
-		colorPrimary: '#000000', //black
-		colorSecondary: '#ffa000' // amber
+		colorPrimary: "#000000", //black
+		colorSecondary: "#ffa000" // amber
 	}
-})
+});
 
 // App component
 class App extends React.Component {
 	render() {
 		return (
 			// Pass customTheme value to theme prop of Carousel component
-			<Carousel name='test-carousel' theme={customTheme}>
+			<Carousel name="test-carousel" theme={customTheme}>
 				<Slide>My first slide</Slide>
 			</Carousel>
-		)
+		);
 	}
 }
 ```
@@ -257,17 +257,25 @@ class App extends React.Component {
 		</div>
 		<script>
 			// Slides container
-			const box1 = document.getElementById('test')
+			const box1 = document.getElementById("test");
 			// Control for previous slide
-			const controlsPrev1 = document.getElementById('prev-btn')
+			const controlsPrev1 = document.getElementById("prev-btn");
 			// Control for next slide
-			const controlsNext1 = document.getElementById('next-btn')
+			const controlsNext1 = document.getElementById("next-btn");
 			// Slides
-			const slides1 = box1.querySelectorAll('.carousel-item')
-			const carouselWrapper = box1.parentElement.parentElement
+			const slides1 = box1.querySelectorAll(".carousel-item");
+			const carouselWrapper = box1.parentElement.parentElement;
 			// Indicators box
-			const indicatorsBox1 = carouselWrapper.querySelector('.slide-indicators')
-			createCarousel(box1, controlsPrev1, controlsNext1, slides1, indicatorsBox1)
+			const indicatorsBox1 = carouselWrapper.querySelector(
+				".slide-indicators"
+			);
+			createCarousel(
+				box1,
+				controlsPrev1,
+				controlsNext1,
+				slides1,
+				indicatorsBox1
+			);
 		</script>
 	</body>
 </html>
