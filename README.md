@@ -14,39 +14,7 @@ import {Carousel, Slide} from 'reactousel'
 // reactousel/dist/index.css no longer exists
 ```
 
--   The carousel theme can now be customized by importing **createCarouselTheme** instead of the old way of passing **primaryColor** and **secondaryColor** props to Carousel. Using the old way is expected to fail.
-
-```jsx
-// Import React as usual
-import React from 'react'
-
-// Import createCarouselTheme in addition to Carousel and Slide
-import {Carousel, Slide, createCarouselTheme} from 'reactousel'
-
-// You can use HEX or RGB or normal color values
-const customTheme = createCarouselTheme({
-	// theme for control buttons
-	controls: {
-		colorPrimary: '#0000ff', // blue
-		colorSecondary: '#ffffff' // white
-	},
-	// theme for indicators
-	indicators: {
-		colorPrimary: '#000000', //black
-		colorSecondary: '#ffa000' // amber
-	}
-})
-
-// App component
-function App() {
-	return (
-		// Pass customTheme value to theme prop of Carousel component
-		<Carousel name='test-carousel' theme={customTheme}>
-			<Slide>My first slide</Slide>
-		</Carousel>
-	)
-}
-```
+-   The carousel theme can now be customized by importing **createCarouselTheme** instead of the old way of passing **primaryColor** and **secondaryColor** props to Carousel. Using the old way is expected to fail. See [Theming](#theming) below.
 
 ## Install
 
