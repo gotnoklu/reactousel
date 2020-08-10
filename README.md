@@ -75,11 +75,11 @@ import 'reactousel/dist/index.css'
 
 // App component
 function App() {
-	return (
-		<Carousel name='test-carousel'>
-			<Slide>My first slide</Slide>
-		</Carousel>
-	)
+    return (
+        <Carousel name='test-carousel'>
+            <Slide>My first slide</Slide>
+        </Carousel>
+    )
 }
 ```
 
@@ -97,13 +97,13 @@ import 'reactousel/dist/index.css'
 
 // App component
 class App extends React.Component {
-	render() {
-		return (
-			<Carousel name='test-carousel'>
-				<Slide>My first slide</Slide>
-			</Carousel>
-		)
-	}
+    render() {
+        return (
+            <Carousel name='test-carousel'>
+                <Slide>My first slide</Slide>
+            </Carousel>
+        )
+    }
 }
 ```
 
@@ -172,28 +172,28 @@ import {Carousel, Slide, createCarouselTheme} from 'reactousel'
 
 // You can use HEX or RGB or normal color values
 const customTheme = createCarouselTheme({
-	// theme for control buttons
-	controls: {
-		colorPrimary: '#0000ff', // blue
-		colorSecondary: '#ffffff' // white
-	},
-	// theme for indicators
-	indicators: {
-		colorPrimary: '#000000', //black
-		colorSecondary: '#ffa000' // amber
-	}
+    // theme for control buttons
+    controls: {
+        colorPrimary: '#0000ff', // blue
+        colorSecondary: '#ffffff' // white
+    },
+    // theme for indicators
+    indicators: {
+        colorPrimary: '#000000', //black
+        colorSecondary: '#ffa000' // amber
+    }
 })
 
 // App component
 class App extends React.Component {
-	render() {
-		return (
-			// Pass customTheme value to theme prop of Carousel component
-			<Carousel name='test-carousel' theme={customTheme}>
-				<Slide>My first slide</Slide>
-			</Carousel>
-		)
-	}
+    render() {
+        return (
+            // Pass customTheme value to theme prop of Carousel component
+            <Carousel name='test-carousel' theme={customTheme}>
+                <Slide>My first slide</Slide>
+            </Carousel>
+        )
+    }
 }
 ```
 
