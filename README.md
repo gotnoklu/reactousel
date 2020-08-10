@@ -14,17 +14,17 @@ import {Carousel, Slide} from 'reactousel'
 // reactousel/dist/index.css no longer exists
 ```
 
--   The carousel theme can now be customized by importing **createCarouselTheme** instead of the old way of passing **primaryColor** and **secondaryColor** props to Carousel. Using the old way is expected to fail. See [Theming](#theming) below.
+-   The carousel theme can now be customized by importing **createCarouselTheme** instead of the old way of passing **primaryColor** and **secondaryColor** props to Carousel. Using the old way is expected to fail. See [**Theming**](#theming) below.
 
 ## Install
 
--   Install with [npm](https://npmjs.com)<br />
+-   Install with [npm](https://npmjs.com)
 
 ```bash
 $ npm install reactousel
 ```
 
--   Install with [yarn](https://yarnpkg.com)<br />
+-   Install with [yarn](https://yarnpkg.com)
 
 ```bash
 $ yarn add reactousel
@@ -46,7 +46,7 @@ $ yarn add reactousel
 
 ## Usage
 
--   Import the carousel and slide components like below:<br/>
+-   Import the carousel and slide components like below:
 
 ```jsx
 // Import React
@@ -115,61 +115,47 @@ class App extends React.Component {
 
 `primaryColor, secondaryColor` have however, been removed **starting from version 1.1.0**
 
--   `name`<br />
-    desired unique name of the carousel (required).
+-   `name`<br /> desired unique name of the carousel (required).
 
--   `controlsStyle`<br />
-    styles of the previous and next buttons.
+-   `controlsStyle`<br /> styles of the previous and next buttons.
 
--   `controlsPrevious`<br />
-    replace default previous control with your own.
+-   `controlsPrevious`<br /> replace default previous control with your own.
 
--   `controlsNext`<br />
-    replace default next control with your own.
+-   `controlsNext`<br /> replace default next control with your own.
 
--   `noIndicators`<br />
-    removes slide indicators.
+-   `noIndicators`<br /> removes slide indicators.
 
--   `noControls`<br />
-    removes carousel controls.
+-   `noControls`<br /> removes carousel controls.
 
--   `indicatorStyle`<br />
-    styles of the indicators.
+-   `indicatorStyle`<br /> styles of the indicators.
 
--   `delay`<br />
-    delays transition time of each slide.
+-   `delay`<br /> delays transition time of each slide.
 
--   `spacing`<br />
-    spacing within carousel.
+-   `spacing`<br /> spacing within carousel.
 
--   `height`<br />
-    height of carousel.
+-   `height`<br /> height of carousel.
 
--   `primaryColor` **(removed in version 1.1.0, see [Theming](#theming) below)**<br />
-    color of controls.<br />
+-   `primaryColor` **(removed in version 1.1.0, see [Theming](#theming) below)**<br /> color of controls.<br />
 
     ```javascript
     // Example
     primaryColor={{ main: '#000', contrast: '#fff' }}
     ```
 
--   `secondaryColor` **(removed in version 1.1.0, see [Theming](#theming) below)**<br />
-    color of indicators.<br />
+-   `secondaryColor` **(removed in version 1.1.0, see [Theming](#theming) below)**<br /> color of indicators.<br />
 
     ```javascript
     // Example
     secondaryColor={{ main: '#ffa000' }}
     ```
 
--   `children`<br />
-    **`<Slide>`** elements only. Any other element will display a fallback slide whilst anything else will show "No slides".
+-   `children`<br /> **`<Slide>`** elements only. Any other element will display a fallback slide whilst anything else will show "No slides".
 
 ### `<Slide>` props
 
 `children`
 
--   `children`<br/>
-    any element or text.
+-   `children`<br/> any element or text.
 
 ## Theming
 
@@ -219,23 +205,17 @@ class App extends React.Component {
     $ git clone https://github.com/Elkanah-me/reactousel.git
     ```
 
--   **Install dependencies**<br />
-    `npm install` or `yarn install`
+-   **Install dependencies**<br /> `npm install` or `yarn install`
 
--   **Start**<br />
-    `npm run start` or `yarn run start`
+-   **Start**<br /> `npm run start` or `yarn run start`
 
--   **Build**<br />
-    `npm run build` or `yarn run build`
+-   **Build**<br /> `npm run build` or `yarn run build`
 
--   **Install dependencies for example**<br />
-    `cd example && npm install` or `cd example && yarn install`
+-   **Install dependencies for example**<br /> `cd example && npm install` or `cd example && yarn install`
 
--   **Run in browser**<br />
-    `cd example && npm run start` or `cd example && yarn run start`
+-   **Run in browser**<br /> `cd example && npm run start` or `cd example && yarn run start`
 
--   **Build example**<br />
-    `cd example && npm run build` or `cd example && yarn run build`
+-   **Build example**<br /> `cd example && npm run build` or `cd example && yarn run build`
 
 ## In your HTML, CSS and JS projects
 
