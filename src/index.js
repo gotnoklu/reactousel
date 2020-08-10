@@ -1,5 +1,5 @@
 import Carousel from './components/Carousel'
 import Slide from './components/Slide'
-import './css/reactousel.css'
+import createCarouselTheme from './styles/createCarouselTheme'
 
-export { Carousel, Slide }
+export {Carousel, Slide, createCarouselTheme}
