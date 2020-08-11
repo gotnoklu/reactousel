@@ -9,22 +9,28 @@
 -   Importing styles from `reactousel/dist/index.css` **is expected to result in an error** since all styles have now been converted to [**JSS**](https://cssinjs.org).
 
 ```jsx
-import {Carousel, Slide} from 'reactousel'
+import { Carousel, Slide } from "reactousel";
 
 // reactousel/dist/index.css no longer exists
 ```
 
--   The carousel theme can now be customized by importing **createCarouselTheme** instead of the old way of passing **primaryColor** and **secondaryColor** props to Carousel. Using the old way is expected to fail. See [Theming](#theming) below.
+-   The **Carousel** component now has swipe funtionality.
+
+```jsx
+<Carousel swipeable></Carousel>
+```
+
+-   The carousel theme can now be customized by importing **createCarouselTheme** instead of the old way of passing **primaryColor** and **secondaryColor** props to Carousel. Using the old way is expected to fail. See [**Theming**](#theming) below.
 
 ## Install
 
--   Install with [npm](https://npmjs.com)<br />
+-   Install with [npm](https://npmjs.com)
 
 ```bash
 $ npm install reactousel
 ```
 
--   Install with [yarn](https://yarnpkg.com)<br />
+-   Install with [yarn](https://yarnpkg.com)
 
 ```bash
 $ yarn add reactousel
@@ -46,40 +52,40 @@ $ yarn add reactousel
 
 ## Usage
 
--   Import the carousel and slide components like below:<br/>
+-   Import the carousel and slide components like below:
 
 ```jsx
 // Import React
-import React from 'react'
+import React from "react";
 
 // Import Carousel and Slide like this
-import {Carousel, Slide} from 'reactousel'
+import { Carousel, Slide } from "reactousel";
 
 // Only import index.css in versions below 1.1.0.
 // In versions above 1.1.0, it is expected to cause an error.
-import 'reactousel/dist/index.css'
+import "reactousel/dist/index.css";
 ```
 
 -   Example with a functional component:
 
 ```jsx
 //Import React
-import React from 'react'
+import React from "react";
 
 // Import Carousel and Slide components
-import {Carousel, Slide} from 'reactousel'
+import { Carousel, Slide } from "reactousel";
 
 // Only import index.css in versions below 1.1.0.
 // In versions above 1.1.0, it is expected to cause an error.
-import 'reactousel/dist/index.css'
+import "reactousel/dist/index.css";
 
 // App component
 function App() {
 	return (
-		<Carousel name='test-carousel'>
+		<Carousel name="test-carousel">
 			<Slide>My first slide</Slide>
 		</Carousel>
-	)
+	);
 }
 ```
 
@@ -87,22 +93,22 @@ function App() {
 
 ```jsx
 //Import React
-import React from 'react'
+import React from "react";
 
 // Import Carousel and Slide components
-import {Carousel, Slide} from 'reactousel'
+import { Carousel, Slide } from "reactousel";
 
 // Import styles
-import 'reactousel/dist/index.css'
+import "reactousel/dist/index.css";
 
 // App component
 class App extends React.Component {
 	render() {
 		return (
-			<Carousel name='test-carousel'>
+			<Carousel name="test-carousel">
 				<Slide>My first slide</Slide>
 			</Carousel>
-		)
+		);
 	}
 }
 ```
@@ -111,65 +117,53 @@ class App extends React.Component {
 
 ### `<Carousel>` props
 
-`name, controlsStyle, controlsPrevious, controlsNext, noIndicators, noControls, indicatorsStyle, delay, spacing, height, children`
+`name, controlsStyle, controlsPrevious, controlsNext, noIndicators, noControls, indicatorsStyle, delay, spacing, height, swipeable, children`
 
 `primaryColor, secondaryColor` have however, been removed **starting from version 1.1.0**
 
--   `name`<br />
-    desired unique name of the carousel (required).
+-   `name`<br /> desired unique name of the carousel (required).
 
--   `controlsStyle`<br />
-    styles of the previous and next buttons.
+-   `controlsStyle`<br /> styles of the previous and next buttons.
 
--   `controlsPrevious`<br />
-    replace default previous control with your own.
+-   `controlsPrevious`<br /> replace default previous control with your own.
 
--   `controlsNext`<br />
-    replace default next control with your own.
+-   `controlsNext`<br /> replace default next control with your own.
 
--   `noIndicators`<br />
-    removes slide indicators.
+-   `noIndicators`<br /> removes slide indicators.
 
--   `noControls`<br />
-    removes carousel controls.
+-   `noControls`<br /> removes carousel controls.
 
--   `indicatorStyle`<br />
-    styles of the indicators.
+-   `indicatorStyle`<br /> styles of the indicators.
 
--   `delay`<br />
-    delays transition time of each slide.
+-   `delay`<br /> delays transition time of each slide.
 
--   `spacing`<br />
-    spacing within carousel.
+-   `spacing`<br /> spacing within carousel.
 
--   `height`<br />
-    height of carousel.
+-   `height`<br /> height of carousel.
 
--   `primaryColor` **(removed in version 1.1.0, see [Theming](#theming) below)**<br />
-    color of controls.<br />
+-   `primaryColor` **(removed in version 1.1.0, see [Theming](#theming) below)**<br /> color of controls.<br />
 
     ```javascript
     // Example
     primaryColor={{ main: '#000', contrast: '#fff' }}
     ```
 
--   `secondaryColor` **(removed in version 1.1.0, see [Theming](#theming) below)**<br />
-    color of indicators.<br />
+-   `secondaryColor` **(removed in version 1.1.0, see [Theming](#theming) below)**<br /> color of indicators.<br />
 
     ```javascript
     // Example
     secondaryColor={{ main: '#ffa000' }}
     ```
 
--   `children`<br />
-    **`<Slide>`** elements only. Any other element will display a fallback slide whilst anything else will show "No slides".
+-   `swipeable`<br /> enables swipe functionality.
+
+-   `children`<br /> **`<Slide>`** elements only. Any other element will display a fallback slide whilst anything else will show "No slides".
 
 ### `<Slide>` props
 
 `children`
 
--   `children`<br/>
-    any element or text.
+-   `children`<br/> any element or text.
 
 ## Theming
 
@@ -179,34 +173,34 @@ As of versions 1.1.0 and above, customizing the theme for the controls and indic
 
 ```jsx
 // Import React as usual
-import React from 'react'
+import React from "react";
 
 // Import createCarouselTheme in addition to Carousel and Slide
-import {Carousel, Slide, createCarouselTheme} from 'reactousel'
+import { Carousel, Slide, createCarouselTheme } from "reactousel";
 
 // You can use HEX or RGB or normal color values
 const customTheme = createCarouselTheme({
 	// theme for control buttons
 	controls: {
-		colorPrimary: '#0000ff', // blue
-		colorSecondary: '#ffffff' // white
+		colorPrimary: "#0000ff", // blue
+		colorSecondary: "#ffffff" // white
 	},
 	// theme for indicators
 	indicators: {
-		colorPrimary: '#000000', //black
-		colorSecondary: '#ffa000' // amber
+		colorPrimary: "#000000", //black
+		colorSecondary: "#ffa000" // amber
 	}
-})
+});
 
 // App component
 class App extends React.Component {
 	render() {
 		return (
 			// Pass customTheme value to theme prop of Carousel component
-			<Carousel name='test-carousel' theme={customTheme}>
+			<Carousel name="test-carousel" theme={customTheme}>
 				<Slide>My first slide</Slide>
 			</Carousel>
-		)
+		);
 	}
 }
 ```
@@ -219,23 +213,17 @@ class App extends React.Component {
     $ git clone https://github.com/Elkanah-me/reactousel.git
     ```
 
--   **Install dependencies**<br />
-    `npm install` or `yarn install`
+-   **Install dependencies**<br /> `npm install` or `yarn install`
 
--   **Start**<br />
-    `npm run start` or `yarn run start`
+-   **Start**<br /> `npm run start` or `yarn run start`
 
--   **Build**<br />
-    `npm run build` or `yarn run build`
+-   **Build**<br /> `npm run build` or `yarn run build`
 
--   **Install dependencies for example**<br />
-    `cd example && npm install` or `cd example && yarn install`
+-   **Install dependencies for example**<br /> `cd example && npm install` or `cd example && yarn install`
 
--   **Run in browser**<br />
-    `cd example && npm run start` or `cd example && yarn run start`
+-   **Run in browser**<br /> `cd example && npm run start` or `cd example && yarn run start`
 
--   **Build example**<br />
-    `cd example && npm run build` or `cd example && yarn run build`
+-   **Build example**<br /> `cd example && npm run build` or `cd example && yarn run build`
 
 ## In your HTML, CSS and JS projects
 
@@ -277,17 +265,25 @@ class App extends React.Component {
 		</div>
 		<script>
 			// Slides container
-			const box1 = document.getElementById('test')
+			const box1 = document.getElementById("test");
 			// Control for previous slide
-			const controlsPrev1 = document.getElementById('prev-btn')
+			const controlsPrev1 = document.getElementById("prev-btn");
 			// Control for next slide
-			const controlsNext1 = document.getElementById('next-btn')
+			const controlsNext1 = document.getElementById("next-btn");
 			// Slides
-			const slides1 = box1.querySelectorAll('.carousel-item')
-			const carouselWrapper = box1.parentElement.parentElement
+			const slides1 = box1.querySelectorAll(".carousel-item");
+			const carouselWrapper = box1.parentElement.parentElement;
 			// Indicators box
-			const indicatorsBox1 = carouselWrapper.querySelector('.slide-indicators')
-			createCarousel(box1, controlsPrev1, controlsNext1, slides1, indicatorsBox1)
+			const indicatorsBox1 = carouselWrapper.querySelector(
+				".slide-indicators"
+			);
+			createCarousel(
+				box1,
+				controlsPrev1,
+				controlsNext1,
+				slides1,
+				indicatorsBox1
+			);
 		</script>
 	</body>
 </html>
