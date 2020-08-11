@@ -14,6 +14,12 @@ import { Carousel, Slide } from "reactousel";
 // reactousel/dist/index.css no longer exists
 ```
 
+-   The **Carousel** component now has swipe funtionality.
+
+```jsx
+<Carousel swipeable></Carousel>
+```
+
 -   The carousel theme can now be customized by importing **createCarouselTheme** instead of the old way of passing **primaryColor** and **secondaryColor** props to Carousel. Using the old way is expected to fail. See [**Theming**](#theming) below.
 
 ## Install
@@ -111,7 +117,7 @@ class App extends React.Component {
 
 ### `<Carousel>` props
 
-`name, controlsStyle, controlsPrevious, controlsNext, noIndicators, noControls, indicatorsStyle, delay, spacing, height, children`
+`name, controlsStyle, controlsPrevious, controlsNext, noIndicators, noControls, indicatorsStyle, delay, spacing, height, swipeable, children`
 
 `primaryColor, secondaryColor` have however, been removed **starting from version 1.1.0**
 
@@ -148,6 +154,8 @@ class App extends React.Component {
     // Example
     secondaryColor={{ main: '#ffa000' }}
     ```
+
+-   `swipeable`<br /> enables swipe functionality.
 
 -   `children`<br /> **`<Slide>`** elements only. Any other element will display a fallback slide whilst anything else will show "No slides".
 
