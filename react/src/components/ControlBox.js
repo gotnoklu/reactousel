@@ -1,9 +1,9 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { makeStyles } from "../styles";
+import React from "react"
+import PropTypes from "prop-types"
+import {makeStyles} from "../styles"
 
 const useStyles = makeStyles({
-	controlBox: ({ position, hideControl }) => ({
+	controlBox: ({position, hideControl}) => ({
 		width: "max-content",
 		height: "100%",
 		position: "absolute",
@@ -15,11 +15,11 @@ const useStyles = makeStyles({
 		alignItems: "center",
 		justifyContent: "center"
 	})
-});
+})
 
-export default function ControlBox({ position, hideControl, children }) {
-	const classes = useStyles({ position, hideControl });
-	return <div className={classes.controlBox}>{children}</div>;
+export default function ControlBox({position, hideControl, children}) {
+	const classes = useStyles({position, hideControl})
+	return <div className={classes.controlBox}>{children}</div>
 }
 
 ControlBox.propTypes = {
@@ -27,4 +27,4 @@ ControlBox.propTypes = {
 	hideControl: PropTypes.bool,
 	position: PropTypes.string.isRequired,
 	children: PropTypes.node.isRequired
-};
+}
