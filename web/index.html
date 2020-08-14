@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<meta content="viewport" width="device-width" initial-scale="1" initial-zoom="1" />
+
+	<head>
+		<link rel="stylesheet" href="./css/index.css" />
+		<link rel="stylesheet" href="./css/reactousel.css" />
+		<script src="./js/reactousel.js"></script>
+	</head>
+
+	<style>
+		.carousel-item {
+			align-items: center;
+			justify-content: center;
+			font-size: 3rem;
+			font-family: 'Roboto';
+			font-weight: lighter;
+		}
+
+		.carousel-item:nth-child(2n) {
+			background-color: grey;
+		}
+
+		.carousel-item:nth-child(2n + 1) {
+			background-color: green;
+		}
+	</style>
+
+	<body>
+		<div class="carousel-wrapper" style="width: 800px;">
+			<div class="carousel">
+				<div class="carousel-control-box prev">
+					<button id="prev-btn" class="carousel-control prev style-circle">
+						<img src="./left-arrow-icon.svg" alt="prev" />
+					</button>
+				</div>
+				<div id="test" class="carousel">
+					<div class="carousel-item">
+						1
+						<!-- <img src=" ./images/1.png" alt="1" style="width: 100%; height: 100%;" /> -->
+					</div>
+					<div class=" carousel-item">
+						2
+						<!-- <img src=" ./images/2.png" alt="2" style="width: 100%; height: 100%;" /> -->
+					</div>
+					<div class="carousel-item">
+						3
+						<!-- <img src=" ./images/3.png" alt="3" style="width: 100%; height: 100%;" /> -->
+					</div>
+				</div>
+				<div class="carousel-control-box next">
+					<button id="next-btn" class="carousel-control next style-circle">
+						<img src="./right-arrow-icon.svg" alt="next" />
+					</button>
+				</div>
+			</div>
+			<div class="slide-indicators"></div>
+		</div>
+		<script>
+			const box1 = document.getElementById('test')
+			const controlsPrev1 = document.getElementById('prev-btn')
+			const controlsNext1 = document.getElementById('next-btn')
+			const slides1 = box1.querySelectorAll('.carousel-item')
+			const carouselWrapper = box1.parentElement.parentElement
+			const indicatorsBox1 = carouselWrapper.querySelector('.slide-indicators')
+			createCarousel(box1, controlsPrev1, controlsNext1, slides1, indicatorsBox1, {
+				swipeable: true,
+				swipeableBox: carouselWrapper
+			})
+		</script>
+	</body>
+</html>
