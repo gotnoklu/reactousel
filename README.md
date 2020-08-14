@@ -2,7 +2,7 @@
 
 > Reactousel is a simple carousel for React and the web.
 
-[![NPM](https://img.shields.io/npm/v/reactousel.svg)](https://www.npmjs.com/package/reactousel) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 Reactousel supports theming, swipe and other carousel features.
 
