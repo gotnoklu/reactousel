@@ -5,9 +5,9 @@
 	"author": "Elkanah-me",
 	"license": "MIT",
 	"repository": "https://github.com/Elkanah-me/reactousel",
-	"main": "dist/index.js",
-	"module": "dist/index.modern.js",
-	"source": "src/index.js",
+	"main": "./dist/index.js",
+	"module": "./dist/index.modern.js",
+	"source": "./src/index.js",
 	"engines": {
 		"node": ">=10"
 	},
@@ -18,10 +18,7 @@
 		"test": "run-s test:unit test:build",
 		"test:build": "run-s build",
 		"test:unit": "cross-env CI=1 react-scripts test",
-		"test:watch": "react-scripts test",
-		"yarn-install:example": "cd example && yarn install",
-		"yarn-start:example": "cd example && yarn run start",
-		"build:example": "cd example && react-scripts build"
+		"test:watch": "react-scripts test"
 	},
 	"peerDependencies": {
 		"react": "^16.8.0"
