@@ -2,9 +2,15 @@
 	"env": {
 		"browser": true,
 		"es6": true,
-		"node": true
+		"node": true,
+		"jest": true
 	},
-	"extends": ["eslint:recommended", "plugin:react/recommended", "prettier"],
+	"extends": [
+		"eslint:recommended",
+		"plugin:react/recommended",
+		"plugin:jest/recommended",
+		"prettier"
+	],
 	"globals": {
 		"Atomics": "readonly",
 		"SharedArrayBuffer": "readonly"
@@ -16,7 +22,7 @@
 		"ecmaVersion": 2018,
 		"sourceType": "module"
 	},
-	"plugins": ["react", "prettier"],
+	"plugins": ["react", "prettier", "jest"],
 	"rules": {
 		"indent": ["error", "tab", { "SwitchCase": 1 }],
 		"linebreak-style": ["error", "unix"],
