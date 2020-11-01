@@ -1,8 +1,7 @@
 # general
-node_modules
-add-css-line
-dist
-example/node_modules
+node_modules/
+dist/
+.vscode/
 
 # yarn/npm specific
 yarn.lock
