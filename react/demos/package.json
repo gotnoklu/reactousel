@@ -7,10 +7,10 @@
 		"eject": "node ../library/node_modules/react-scripts/bin/react-scripts.js eject"
 	},
 	"dependencies": {
-		"react": "link: ../library/node_modules/react",
+		"react": "link:../library/node_modules/react",
 		"react-dom": "link:../library/node_modules/react-dom",
 		"react-scripts": "link:../library/node_modules/react-scripts",
-		"reactousel": "link:../library/"
+		"reactousel": "link:../library"
 	},
 	"devDependencies": {
 		"@babel/plugin-syntax-object-rest-spread": "^7.8.3"
