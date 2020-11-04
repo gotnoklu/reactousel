@@ -7,13 +7,12 @@
 Reactousel supports theming, swipe and other carousel features.
 
 ## More
-Read on all the features of the react specific version [here](https://github.com/Elkanah-me/reactousel/tree/master/react) and the vanilla JS version [here](https://github.com/Elkanah-me/reactousel/tree/master/web)
 
-<hr />
+Read on all the features of the react specific version [here](https://github.com/Elkanah-me/reactousel/tree/master/react/library) and the vanilla JS version [here](https://github.com/Elkanah-me/reactousel/tree/master/web/library)
+
+## Demos
 
 Checkout [the demos on Reactousel's website](https://reactousel.web.app/demos). You may [download the JS & CSS files](https://reactousel.web.app/download) to use in your raw HTML, CSS, JS projects.
-
-<hr />
 
 ## License
 
