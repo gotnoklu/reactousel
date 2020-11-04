@@ -8,6 +8,7 @@ import Slide from './Slide'
 import FallbackSlide from './FallbackSlide'
 import { makeStyles, withCarouselTheme } from '../styles'
 import useSwipe from '../utils/useSwipe'
+import useCarousel from '../utils/useCarousel'
 
 const useStyles = makeStyles((theme) => ({
 	carousel: {
@@ -108,6 +109,8 @@ function Carousel({
 	React.useEffect(() => {
 		computeTranslation()
 	}, [elems.slidebox, values])
+
+	const carousel = useCarousel()
 
 	const swipe = swipeable
 		? useSwipe({
