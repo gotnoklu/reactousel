@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 import React from 'react'
 import { Carousel, Slide, createCarouselTheme } from 'reactousel'
 
@@ -30,11 +31,23 @@ const theme = createCarouselTheme({
 
 const App = () => {
 	return (
-		<Carousel name='example' controlsStyle='circle' theme={theme} swipeable>
-			{slides.map((content, index) => (
-				<Slide key={index}>{content}</Slide>
-			))}
-		</Carousel>
+		<React.Fragment>
+			<Carousel name='example-1' controlsStyle='circle'>
+				{slides.map((content, index) => (
+					<Slide key={index}>{content}</Slide>
+				))}
+			</Carousel>
+			<Carousel name='example-2' controlsStyle='circle' theme={theme} swipeable>
+				{slides.map((content, index) => (
+					<Slide key={index}>{content}</Slide>
+				))}
+			</Carousel>
+			<Carousel name='example-3' controlsStyle='circle' theme={theme} swipeable>
+				{slides.map((content, index) => (
+					<Slide key={index}>{content}</Slide>
+				))}
+			</Carousel>
+		</React.Fragment>
 	)
 }
 
