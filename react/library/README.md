@@ -219,11 +219,9 @@ class App extends React.Component {
 
 - **Build**<br /> `npm run build` or `yarn run build`
 
-- **Install dependencies for demo**<br /> `cd demo && npm install` or `cd demo && yarn install`
+- **Run in browser**<br /> `cd ../demo && npm run start` or `cd ../demo && yarn run start`
 
-- **Run in browser**<br /> `cd demo && npm run start` or `cd demo && yarn run start`
-
-- **Build demo**<br /> `cd demo && npm run build` or `cd demo && yarn run build`
+- **Build demo**<br /> `cd ../demo && npm run build` or `cd ../demo && yarn run build`
 
 ## In your HTML, CSS and JS projects
 

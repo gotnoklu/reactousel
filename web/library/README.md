@@ -22,3 +22,15 @@
     </body>
 </html>
 ```
+
+## Development
+
+- **Clone the project**<br />
+
+  ```bash
+  git clone https://github.com/Elkanah-me/reactousel.git
+  ```
+
+- **Install dependencies**<br /> `npm install` or `yarn install`
+
+- **Build**<br /> `npm run build` or `yarn run build`
