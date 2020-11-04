@@ -110,7 +110,7 @@ function Carousel({
 		computeTranslation()
 	}, [elems.slidebox, values])
 
-	const carousel = useCarousel()
+	const carousel = useCarousel(name, children, delay, swipeable)
 
 	const swipe = swipeable
 		? useSwipe({
