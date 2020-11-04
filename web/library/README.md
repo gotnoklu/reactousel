@@ -34,3 +34,7 @@
 - **Install dependencies**<br /> `npm install` or `yarn install`
 
 - **Build**<br /> `npm run build` or `yarn run build`
+
+## Demos
+
+Checkout [the demos on Reactousel's website](https://reactousel.web.app/demos). You may [download the JS & CSS files](https://reactousel.web.app/download) to use in your raw HTML, CSS, JS projects.

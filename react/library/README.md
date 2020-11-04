@@ -230,7 +230,3 @@ Read more [here](https://github.com/Elkanah-me/reactousel/tree/master/web/librar
 ## Demos
 
 Checkout [the demos on Reactousel's website](https://reactousel.web.app/demos). You may [download the JS & CSS files](https://reactousel.web.app/download) to use in your raw HTML, CSS, JS projects.
-
-## License
-
-MIT © [Elkanah-me](https://github.com/Elkanah-me)
