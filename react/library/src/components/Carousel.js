@@ -7,7 +7,7 @@ import IndicatorsBox from './IndicatorsBox'
 import Slide from './Slide'
 import FallbackSlide from './FallbackSlide'
 import { makeStyles, withCarouselTheme } from '../styles'
-import useSwipe from '../swipe/useSwipe'
+import useSwipe from '../utils/useSwipe'
 
 const useStyles = makeStyles((theme) => ({
 	carousel: {
