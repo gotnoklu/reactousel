@@ -1,0 +1,9 @@
+# general
+node_modules/
+dist/
+.vscode/
+
+# yarn/npm specific
+yarn.lock
+package.lock.json
+yarn.error.log

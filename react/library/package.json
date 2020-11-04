@@ -1,0 +1,43 @@
+{
+	"name": "reactousel",
+	"version": "1.1.0",
+	"description": "A simple carousel library for React and the web",
+	"author": "Elkanah-me",
+	"license": "MIT",
+	"repository": "https://github.com/Elkanah-me/reactousel",
+	"main": "./dist/index.js",
+	"module": "./dist/index.modern.js",
+	"source": "./src/index.js",
+	"engines": {
+		"node": ">=10"
+	},
+	"scripts": {
+		"build": "microbundle-crl --css-modules false --compress --format modern,cjs",
+		"start": "microbundle-crl watch --css-modules false --compress --format modern,cjs",
+		"prepare": "run-s build",
+		"test": "run-s test:unit test:build",
+		"test:build": "run-s build",
+		"test:unit": "cross-env CI=1 react-scripts test",
+		"test:watch": "react-scripts test"
+	},
+	"peerDependencies": {
+		"react": "^16.8.0"
+	},
+	"devDependencies": {
+		"@rollup/plugin-commonjs": "11.0.2",
+		"babel-eslint": "^10.0.3",
+		"cross-env": "^7.0.2",
+		"enzyme": "^3.11.0",
+		"enzyme-adapter-react-16": "^1.15.2",
+		"microbundle-crl": "^0.13.10",
+		"npm-run-all": "^4.1.5",
+		"prop-types": "^15.7.2",
+		"react": "^16.13.1",
+		"react-dom": "^16.13.1",
+		"react-jss": "^10.3.0",
+		"react-scripts": "^3.4.1"
+	},
+	"files": [
+		"dist"
+	]
+}
