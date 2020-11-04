@@ -3,15 +3,12 @@ import { makeStyles } from '../styles'
 import useSwipe from './useSwipe'
 
 const useStyles = makeStyles((theme) => ({
-	slidebox: {
-		transition: ({ delay }) => `all ${delay || 0.3}s ease`
-	},
 	indicatorCurrent: {
 		backgroundColor: theme.indicators.colorSecondary
 	}
 }))
 
-function useCarousel(name, children, delay, swipeable) {
+function useCarousel(name, children, swipeable) {
 	const [elems, setElems] = useState({
 		carousel: null,
 		slidebox: null,
@@ -23,7 +20,7 @@ function useCarousel(name, children, delay, swipeable) {
 		slidesData: { offset: 0, counter: 0 },
 		slides: 0
 	})
-	const classes = useStyles({ delay })
+	const classes = useStyles()
 
 	useEffect(() => {
 		const carousel = document.querySelector(`#${name}-carousel`)

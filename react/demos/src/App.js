@@ -3,20 +3,30 @@ import React from 'react'
 import { Carousel, Slide, createCarouselTheme } from 'reactousel'
 
 const styles = {
-	backgroundColor: '#00a0f9',
-	color: '#fff',
-	fontWeight: 'bold',
-	fontSize: '3rem',
-	display: 'flex',
-	alignItems: 'center',
-	justifyContent: 'center',
-	width: '100%'
+	box: {
+		color: '#fff',
+		fontWeight: 'bold',
+		fontSize: '3rem',
+		display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'center',
+		width: '100%'
+	},
+	box1: {
+		backgroundColor: 'green'
+	},
+	box2: {
+		backgroundColor: 'blue'
+	},
+	box3: {
+		backgroundColor: 'red'
+	}
 }
 
 const slides = [
-	<div style={styles}>1</div>,
-	<div style={styles}>2</div>,
-	<div style={styles}>3</div>
+	<div style={{ ...styles.box, ...styles.box1 }}>1</div>,
+	<div style={{ ...styles.box, ...styles.box2 }}>2</div>,
+	<div style={{ ...styles.box, ...styles.box3 }}>3</div>
 ]
 
 const theme = createCarouselTheme({
