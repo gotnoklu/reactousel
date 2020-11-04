@@ -84,8 +84,7 @@ export default function useSwipe({ carousel, slidebox, slidesNumber, translateFn
 			if (event.changedTouches.length) {
 				if (
 					getBreakpoint(slidebox).left > 0 ||
-					Math.abs(getBreakpoint(slidebox).left) >
-						(slidesNumber - 1) * carousel.clientWidth
+					Math.abs(getBreakpoint(slidebox).left) > (slidesNumber - 1) * carousel.clientWidth
 				) {
 					translateElementByPx(slidebox, 0)
 				} else {
