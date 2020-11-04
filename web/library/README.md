@@ -1,25 +1,18 @@
 # Reactousel JS
 
-> Reactousel JS supports swipe functionality
+> Reactousel JS is a carousel library which supports swipe functionality among other features.
 
-## Install Dependencies
+<br />
 
--   Install with [npm](https://npmjs.com)
+## Download
 
-```bash
-$ npm install
-```
+- [Download](https://reactousel.web.app/download) JS & CSS files
 
--   Install with [yarn](https://yarnpkg.com)
-
-```bash
-$ yarn
-```
-
--   [Download](https://reactousel.web.app/download) JS & CSS files (use in the head tag)
+## Usage
 
 ```html
 <html>
+<!-- Use in the head tag -->
     <head>
         <link rel='stylesheet' href='./reactousel.css'>
         <script src='./reactousel.js'>
