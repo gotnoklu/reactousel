@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
 		height: '5px',
 		opacity: 0,
 		borderRadius: '50%',
-		animation: '$rippleEffect 0.7s 1 ease-in-out'
+		animation: '$rippleEffect 0.3s 1 ease-in-out'
 	},
 	circle: {
 		borderRadius: '50%'
@@ -68,7 +68,7 @@ export default function ControlButton({
 		currentTarget.append(rippleElem)
 		setTimeout(() => {
 			currentTarget.removeChild(rippleElem)
-		}, 700)
+		}, 300)
 		handleClick()
 	}
 
