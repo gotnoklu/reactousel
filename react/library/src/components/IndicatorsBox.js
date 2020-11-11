@@ -5,7 +5,7 @@ import { makeStyles } from '../styles'
 const useStyles = makeStyles((theme) => ({
 	indicatorsBox: {
 		position: 'absolute',
-		bottom: 0,
+		bottom: '1rem',
 		width: '100%',
 		display: ({ hideIndicators }) => (hideIndicators ? 'none' : 'flex'),
 		alignItems: 'center',
@@ -15,8 +15,8 @@ const useStyles = makeStyles((theme) => ({
 		mozUserSelect: 'none'
 	},
 	indicator: {
-		width: '10px',
-		height: '10px',
+		width: '7px',
+		height: '7px',
 		cursor: 'pointer',
 		margin: '0 5px',
 		transition: 'all 0.3s cubic-bezier(0.6, -0.28, 0.735, 0.045)',
@@ -24,7 +24,8 @@ const useStyles = makeStyles((theme) => ({
 	},
 	rounded: {
 		borderRadius: '50px',
-		width: '15px'
+		width: '15px',
+		height: '5px'
 	},
 	circle: {
 		borderRadius: '50%'
