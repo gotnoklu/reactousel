@@ -18,7 +18,7 @@ const useStyles = makeStyles({
 		flexDirection: 'column',
 		width: '100%',
 		position: 'relative',
-		padding: ({ spacing }) => `${spacing}%` || 'inherit',
+		padding: ({ spacing }) => `${spacing}px` || 'inherit',
 		height: ({ height }) => height || '500px'
 	},
 	carouselInnerBox: {
