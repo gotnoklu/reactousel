@@ -36,7 +36,7 @@ function useCarousel(name, children, swipeable) {
 			setElems(null)
 			setValues(null)
 		}
-	}, [])
+	}, [children])
 
 	const computeTranslation = (finalOffset, finalCounter = 0) => {
 		const { slidebox, prevControl, nextControl, indicatorsBox } = elems
