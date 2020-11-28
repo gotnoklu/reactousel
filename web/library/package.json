@@ -1,12 +1,14 @@
 {
-	"name": "reactousel js",
+	"name": "reactousel-js",
 	"version": "1.0.22",
 	"description": "A simple carousel for the web",
 	"scripts": {
-		"build": "node outputdir.js && terser ./lib/reactousel.js -c -m -f quote_style=1 --ie8 -o ./dist/reactousel.min.js"
+		"build": "node outputdir.js && terser ./js/* -c -m -f quote_style=1 --ie8 -o ./dist/reactousel.min.js"
 	},
 	"keywords": [
-		"carousel", "slideshow", "image-carousel"
+		"carousel",
+		"slideshow",
+		"image-carousel"
 	],
 	"author": "Enoch Klu",
 	"license": "MIT",
