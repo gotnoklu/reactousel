@@ -1,0 +1,36 @@
+* {
+	border: none;
+	outline: none;
+	text-decoration: none;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 32px;
+}
+
+.carousel-item {
+	font-size: 3rem;
+	font-family: 'Roboto';
+	font-weight: lighter;
+}
+
+.carousel-item:nth-child(2n) {
+	background-color: grey;
+}
+
+.carousel-item:nth-child(2n + 1) {
+	background-color: green;
+}
+
+.card {
+	margin: 10px;
+	flex-basis: 25%;
+	height: inherit;
+	background-color: brown;
+}
