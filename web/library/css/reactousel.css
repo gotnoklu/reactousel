@@ -9,10 +9,14 @@ div.carousel-wrapper {
 	position: relative;
 }
 
-div.carousel {
+div.carousel,
+div.carousel-box {
 	width: 100%;
 	height: 100%;
 	display: flex;
+}
+
+div.carousel-box {
 	transition-property: all;
 	transition-timing-function: ease;
 }
