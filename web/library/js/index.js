@@ -1,3 +1,12 @@
+/**
+ *
+ * @param {HTMLElement} carouselBox The carousel box with slides
+ * @param {HTMLElement} carouselPrevControl The button to show previous slides
+ * @param {HTMLElement} carouselNextControl The button to show next slides
+ * @param {HTMLNodeList} carouselSlides A list of slides in the carousel box
+ * @param {HTMLElement} carouselIndicatorsBox The box where indicators would be rendered
+ * @param {Object} config An object containing options for the carousel
+ */
 function createCarousel(
 	carouselBox,
 	carouselPrevControl,
@@ -17,12 +26,6 @@ function createCarousel(
 	})
 	const configState = new State({
 		slidesData: { offset: 0, counter: 0, delay: config.carouselSlideDelay }
-	})
-	const breakpointState = new State({
-		xs: '(min-width: 0px) and (max-width: 600px)',
-		sm: '(min-width: 601px) and (max-width: 900px)',
-		md: '(min-width: 901px) and (max-width: 1024px)',
-		lg: '(min-width: 1025px)'
 	})
 
 	function startCarousel() {
@@ -60,122 +63,139 @@ function createCarousel(
 	}
 
 	function handleResponsiveness() {
+		const breakpointState = new State({
+			xs: '(min-width: 0px) and (max-width: 600px)',
+			sm: '(min-width: 601px) and (max-width: 900px)',
+			md: '(min-width: 901px) and (max-width: 1024px)',
+			lg: '(min-width: 1025px)'
+		})
+		const screenSlideState = new State({})
+
 		function useMediaQuery(query, callback) {
-			document.body.onload = () => {
-				const matches = matchMedia(query).matches
-				callback(query, matches)
+			const media = matchMedia(query)
+			if (media.matches) {
+				callback(query, media.matches)
 			}
-			matchMedia(query).onchange = () => {
+			media.onchange = () => {
 				callback(query, matchMedia(query).matches)
 			}
 		}
 
-		const { xs, sm, md, lg } = breakpointState.values
-		let arrayOfArrays = []
-		const dataArray = Array.from(elemState.values.carouselSlides)
-		let dataArrayChildren = []
-		let result = []
-
-		dataArray.forEach((slide) => {
-			if (slide.children.length > 1 && slide) {
-				dataArrayChildren = dataArrayChildren.concat(Array.from(slide.children))
-			}
-		})
-
-		function createSlide() {
-			const slide = document.createElement('DIV')
-			slide.classList.add('carousel-item')
-			return slide
-		}
-
-		function splitData(screen) {
-			Array.from(carouselBox.children).forEach((child) => {
-				carouselBox.removeChild(child)
-			})
-			function split(chunk) {
-				switch (screen) {
-					case xs: {
-						result = dataArrayChildren
-						break
-					}
-					case md && sm: {
-						let temp = []
-						let counter = 0
-						while (counter < dataArrayChildren.length) {
-							temp.push(dataArrayChildren.slice(counter, counter + 3))
-							arrayOfArrays = temp
-							counter += chunk
-							result = arrayOfArrays
-						}
-						break
-					}
-					default: {
-						result = Array.from(elemState.initialState.carouselSlides)
-						console.log({ result })
-						break
-					}
-				}
-
-				result.forEach((item) => {
-					const slide = createSlide()
-					console.log({ children: item.children, box: carouselBox.id })
-					if (item.children) {
-						Array.from(item.children).forEach((child) => {
-							slide.appendChild(child)
-						})
-					}
-					carouselBox.appendChild(slide)
+		function createChildrenArray(data) {
+			let result = []
+			if (data.length) {
+				data.forEach((elem) => {
+					result = result.concat(Array.from(elem.children))
 				})
-
-				elemState.setState({ carouselSlides: result })
-				createIndicators()
-				handleSlideTranslation(0, 0)
-				console.log({ result }, carouselBox.children)
+			} else {
+				result.push(data)
 			}
-
-			switch (screen) {
-				case xs: {
-					split()
-					break
-				}
-				case sm: {
-					split(2)
-					break
-				}
-				case md: {
-					split(3)
-					break
-				}
-				default:
-					split()
-					break
-			}
+			return result
 		}
 
-		function getIsMatch(query, isMatch) {
+		const { xs, sm, md, lg } = breakpointState.values
+		const dataArray = Array.from(elemState.values.carouselSlides)
+		const childrenArray = createChildrenArray(dataArray)
+
+		function handleDataSplit(data) {
+			var factor = Math.round(data.length / 2)
+			var result = []
+			var temp = []
+			var first = 0
+			var second = 1
+			var counter = 0
+			while (counter < factor) {
+				temp.push(data[first], data[second])
+				result.push(temp)
+				temp = []
+				counter += 1
+				first = second + 1
+				second = first + 1
+			}
+			return result
+		}
+
+		function handleCreateSlidesOnLg() {
+			const { initialState } = elemState
+			const slides = Array.from(initialState.carouselSlides)
+			return slides.map(function (slide) {
+				return Array.from(slide.children)
+			})
+		}
+
+		if (childrenArray.length) {
+			screenSlideState.setState({
+				xsSlides: childrenArray,
+				smSlides: childrenArray,
+				mdSlides: handleDataSplit(childrenArray),
+				lgSlides: handleCreateSlidesOnLg()
+			})
+		}
+
+		function handleIsMatch(query, isMatch) {
+			const { xsSlides, smSlides, mdSlides, lgSlides } = screenSlideState.values
+
+			function createSlide() {
+				const slide = document.createElement('div')
+				slide.classList.add('carousel-item')
+				return slide
+			}
+
+			function handleAppendSlides(data) {
+				if (Array.isArray(data)) {
+					elemState.setState({ carouselSlides: data })
+					data.forEach((entry) => {
+						const slide = createSlide()
+						if (Array.isArray(entry)) {
+							entry.forEach((elem) => {
+								if (elem) {
+									slide.appendChild(elem)
+									carouselBox.appendChild(slide)
+								}
+							})
+						} else {
+							slide.appendChild(entry)
+							carouselBox.appendChild(slide)
+						}
+					})
+					createIndicators()
+					configState.setState({ slidesData: { offset: 0, counter: 0 } })
+					handleSlideTranslation(0, 0)
+				}
+			}
+
 			if (isMatch) {
-				splitData(query)
+				if (childrenArray.length) {
+					Array.from(carouselBox.children).forEach((child) => {
+						carouselBox.removeChild(child)
+					})
+					switch (query) {
+						case xs: {
+							return handleAppendSlides(xsSlides)
+						}
+						case sm: {
+							return handleAppendSlides(smSlides)
+						}
+						case md: {
+							return handleAppendSlides(mdSlides)
+						}
+						default:
+							return handleAppendSlides(lgSlides)
+					}
+				}
 			}
 		}
 
-		useMediaQuery(lg, getIsMatch)
-		useMediaQuery(md, getIsMatch)
-		useMediaQuery(sm, getIsMatch)
-		useMediaQuery(xs, getIsMatch)
+		const queries = [xs, sm, md, lg]
+		queries.forEach(function (query) {
+			return useMediaQuery(query, handleIsMatch)
+		})
 	}
 
-	/* @function handleIndicatorClick
-	 ** @param index: Number
-	 ** Handles translation of carousel when an indicator is clicked
-	 */
 	function handleIndicatorClick(index) {
 		handleSlideTranslation(index * -100, index)
 	}
 
-	/* @function createIndicators
-	 ** @param indicatorsBox: Element
-	 ** Create indicators for carousel
-	 */
 	function createIndicators() {
 		const { carouselIndicatorsBox, carouselSlides } = elemState.values
 		if (carouselIndicatorsBox) {
@@ -340,11 +360,6 @@ function createCarousel(
 		return { handleDragStart, handleDragMove, handleDragEnd }
 	}
 
-	/* @function handleSlideTranslation
-	 ** @param offset: Number
-	 ** @param counter: Number
-	 ** Sets translation effects of control buttons, indicators and slides
-	 */
 	function handleSlideTranslation(offset, counter) {
 		const {
 			carouselSlides,
