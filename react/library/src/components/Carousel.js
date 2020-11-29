@@ -8,6 +8,7 @@ import Slide from './Slide'
 import FallbackSlide from './FallbackSlide'
 import { makeStyles, withCarouselTheme } from '../styles'
 import useCarousel from '../utils/useCarousel'
+import useResponsiveness from '../utils/useResponsiveness'
 
 const useStyles = makeStyles({
 	carousel: {
@@ -17,7 +18,7 @@ const useStyles = makeStyles({
 		flexDirection: 'column',
 		width: '100%',
 		position: 'relative',
-		padding: ({ spacing }) => `${spacing}%` || 'inherit',
+		padding: ({ spacing }) => `${spacing}px` || 'inherit',
 		height: ({ height }) => height || '500px'
 	},
 	carouselInnerBox: {
@@ -41,12 +42,13 @@ function Carousel({
 	delay,
 	spacing,
 	height,
+	responsive,
 	swipeable,
 	children
 }) {
 	const classes = useStyles({ spacing, height, delay })
-
-	const carousel = useCarousel(name, children, swipeable)
+	const responsiveSlides = responsive ? useResponsiveness(children) : children
+	const carousel = useCarousel(name, responsiveSlides, swipeable)
 	const {
 		handlePrevClick,
 		handleNextClick,
@@ -58,7 +60,7 @@ function Carousel({
 		if (children) {
 			if (children.length) {
 				return children.map((child, index) =>
-					child.type === Slide ? child : <FallbackSlide key={index + 77} />
+					child.type === Slide ? child : <FallbackSlide key={index} />
 				)
 			} else if (children.type === Slide) {
 				return children
@@ -81,7 +83,7 @@ function Carousel({
 					hideControl={noControls}
 				/>
 				<div id={`${name}-slidebox`} className={`${classes.carouselInnerBox} ${classes.slidebox}`}>
-					{handleRender()}
+					{responsive ? responsiveSlides : handleRender()}
 				</div>
 				<NextControlButton
 					id={`${name}-carousel-next-control`}
@@ -96,7 +98,7 @@ function Carousel({
 				handleIndicatorClick={handleIndicatorClick}
 				hideIndicators={noIndicators}
 				indicatorsStyle={indicatorsStyle}
-				indicators={children || 1}
+				indicators={responsive ? responsiveSlides : children || 1}
 			/>
 		</div>
 	)
@@ -114,8 +116,9 @@ Carousel.propTypes = {
 	delay: PropTypes.number,
 	spacing: PropTypes.number,
 	height: PropTypes.string,
+	responsive: PropTypes.bool,
 	swipeable: PropTypes.bool,
-	children: PropTypes.any
+	children: PropTypes.node
 }
 
 export default withCarouselTheme(Carousel)

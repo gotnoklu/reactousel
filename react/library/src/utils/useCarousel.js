@@ -20,6 +20,7 @@ function useCarousel(name, children, swipeable) {
 		slidesData: { offset: 0, counter: 0 },
 		slides: 0
 	})
+
 	const classes = useStyles()
 
 	useEffect(() => {
@@ -35,7 +36,7 @@ function useCarousel(name, children, swipeable) {
 			setElems(null)
 			setValues(null)
 		}
-	}, [])
+	}, [children])
 
 	const computeTranslation = (finalOffset, finalCounter = 0) => {
 		const { slidebox, prevControl, nextControl, indicatorsBox } = elems
@@ -69,6 +70,16 @@ function useCarousel(name, children, swipeable) {
 	useEffect(() => {
 		computeTranslation()
 	}, [elems.slidebox, values])
+
+	/* eslint-disable indent */
+	const swipe = swipeable
+		? useSwipe({
+				carousel: elems.carousel,
+				slidebox: elems.slidebox,
+				slidesNumber: values.slides,
+				translateFn: computeTranslation
+		  })
+		: null
 
 	const handlePrevClick = () => {
 		setValues(({ slidesData }) => ({
@@ -109,16 +120,6 @@ function useCarousel(name, children, swipeable) {
 		})
 	}
 
-	/* eslint-disable indent */
-	const swipe = swipeable
-		? useSwipe({
-				carousel: elems.carousel,
-				slidebox: elems.slidebox,
-				slidesNumber: values.slides,
-				translateFn: computeTranslation
-		  })
-		: null
-
 	const configTouchEventHandlers = () => {
 		if (swipeable) {
 			return {
@@ -127,10 +128,14 @@ function useCarousel(name, children, swipeable) {
 				onTouchEnd: swipe && swipe.handleTouchEnd
 			}
 		}
-		return null
 	}
 
-	return { handlePrevClick, handleNextClick, handleIndicatorClick, configTouchEventHandlers }
+	return {
+		handlePrevClick,
+		handleNextClick,
+		handleIndicatorClick,
+		configTouchEventHandlers
+	}
 }
 
 export default useCarousel

@@ -1,7 +1,6 @@
-# Reactousel (React)
+# Reactousel (VanillaJS/Web)
 
 ## v1.1.0
 
-- Added theming.
 - Added responsiveness.
 - Fixed swipe bugs.
