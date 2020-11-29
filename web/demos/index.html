@@ -39,19 +39,10 @@
 						<img src="./icons/left-arrow-icon.svg" alt="prev" />
 					</button>
 				</div>
-				<div id="test" class="carousel">
-					<div class="carousel-item">
-						1
-						<!-- <img src=" ./images/1.png" alt="1" style="width: 100%; height: 100%;" /> -->
-					</div>
-					<div class="carousel-item">
-						2
-						<!-- <img src=" ./images/2.png" alt="2" style="width: 100%; height: 100%;" /> -->
-					</div>
-					<div class="carousel-item">
-						3
-						<!-- <img src=" ./images/3.png" alt="3" style="width: 100%; height: 100%;" /> -->
-					</div>
+				<div id="test" class="carousel-box">
+					<div class="carousel-item">1</div>
+					<div class="carousel-item">2</div>
+					<div class="carousel-item">3</div>
 				</div>
 				<div class="carousel-control-box next">
 					<button id="next-btn" class="carousel-control next style-circle">
@@ -69,7 +60,7 @@
 						<img src="./icons/left-arrow-icon.svg" alt="prev" />
 					</button>
 				</div>
-				<div id="test-2" class="carousel">
+				<div id="test-2" class="carousel-box">
 					<div class="carousel-item">
 						<div class="card"></div>
 						<div class="card"></div>
@@ -116,10 +107,7 @@
 			const controlsNext2 = box2Wrapper.querySelector('#next-btn')
 			const slides2 = box2.querySelectorAll('.carousel-item')
 			const indicatorsBox2 = box2Wrapper.querySelector('.slide-indicators')
-			createCarousel(box2, controlsPrev2, controlsNext2, slides2, indicatorsBox2, {
-				swipeable: true,
-				carouselSwipeableBox: box2Wrapper
-			})
+			createCarousel(box2, controlsPrev2, controlsNext2, slides2, indicatorsBox2)
 		</script>
 	</body>
 </html>
