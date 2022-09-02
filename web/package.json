@@ -9,6 +9,6 @@
 	"author": "",
 	"license": "MIT",
 	"devDependencies": {
-		"terser": "^5.0.0"
+		"terser": "^5.14.2"
 	}
 }
